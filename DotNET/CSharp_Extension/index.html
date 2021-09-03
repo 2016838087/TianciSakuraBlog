@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">C#扩展方法 | TianciBlog</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <!-- 手动添加 -->
+  
+  
+  
+  <meta name="keywords" content="Tianciの小窝,天赐个人博客,TianciBlog">
+  
+  <meta name="description" content="扩展方法的创建与使用">
+<meta name="keywords" content="技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#扩展方法">
+<meta property="og:url" content="/DotNET/CSharp_Extension/index.html">
+<meta property="og:site_name" content="TianciBlog">
+<meta property="og:description" content="扩展方法的创建与使用">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg">
+<meta property="og:updated_time" content="2021-09-03T02:14:27.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#扩展方法">
+<meta name="twitter:description" content="扩展方法的创建与使用">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg">
+  
+  <!-- end -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Tianciの小窝";
+  mashiro_option.author_name = "の小窝";
+  mashiro_option.site_url = "https://lovetianci.cn/";
+  mashiro_option.v_appId = "cbSBY3q77EE1UpivdrbefIqi-MdYXbMMI";
+  mashiro_option.v_appKey = "RD6UuwP5oeceYmtT0Exdjs5w";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/0.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/0.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/2.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/2.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/4.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/4.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/6.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/7.jpg,https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/8.jpg".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!-- 鼠标点击爆炸特效 -->
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://lovetianci.cn/">
+          <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/cute.gif">
+        </a>
+      </div>
+      <div class="header-info">
+        <p id="hitokoto">获取中...</p>
+        <script src="https://v1.hitokoto.cn/?c=d&c=e&c=f&c=h&c=j&encode=js&select=%23hitokoto" defer></script>
+        <!-- 主题文件获取改为每日一言 -->
+        <!-- <p>一身清贫怎敢入繁华，两袖清风岂能误佳人</p> -->
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/2016838087" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/img/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Tianci</span>
+            <span class="shironeko">の小窝</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/DotNET/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          .NET
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/SQL/">
+                          <i class="fa fa-file-code-o" aria-hidden="true"></i>
+                          SQL
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Vue/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          Vue
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Hexo/">
+                          <i class="fa fa-houzz" aria-hidden="true"></i>
+                          Hexo
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Other/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          随笔
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-tags faa-shake" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/娱乐/">
+                          <i class="fa fa-gamepad" aria-hidden="true"></i>
+                          娱乐
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/技术/">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/面试题/">
+                          <i class="fa fa-television" aria-hidden="true"></i>
+                          面试
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/photo">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          相册
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-comments faa-shake" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/mood/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-commenting-o faa-shake" aria-hidden="true"></i>
+                    心情
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友链
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-meetup faa-shake" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse faa-shake" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/css/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg);"
+      src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+        C#扩展方法
+      </h1>
+      <p class="entry-census">
+        <span>
+          <!-- 链接 -->
+          <!-- <a href=""> -->
+          <a href="https://lovetianci.cn/">
+            <!-- 头像 -->
+            <!-- <img src=""> -->
+            <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/cute.gif">
+          </a>
+        </span>
+
+        <span>
+          <!-- 发帖人 -->
+          <!-- <a href=""></a> -->
+          <a href="https://lovetianci.cn/">
+            Tianci
+          </a>
+        </span>
+        <span class="bull">
+          ·</span>
+        2020-2-10
+          <span class="bull">
+            ·</span>
+          <span id="busuanzi_value_page_pv"></span>次阅读
+          <span class="bull">
+            ·</span>
+          本章字数:359
+            <span class="bull">
+              ·</span>
+            总字数:9.2k
+              <!-- <span>
+          
+        </span> -->
+      </p>
+    </header>
+  </div>
+  
+    <div id="content" class="site-content">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+          <article id="post-1"
+            class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+            <div class="toc"></div>
+            <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+            
+                <div class="entry-content">
+                  <h2 id="C-扩展方法"><a href="#C-扩展方法" class="headerlink" title="C#扩展方法"></a>C#扩展方法</h2><a id="more"></a>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="1-声明扩展方法的类必须为static类；"><a href="#1-声明扩展方法的类必须为static类；" class="headerlink" title="1. 声明扩展方法的类必须为static类；"></a>1. 声明扩展方法的类必须为static类；</h3><h3 id="2-扩展方法本身也必须声明为static；"><a href="#2-扩展方法本身也必须声明为static；" class="headerlink" title="2. 扩展方法本身也必须声明为static；"></a>2. 扩展方法本身也必须声明为static；</h3><h3 id="3-扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。"><a href="#3-扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。" class="headerlink" title="3. 扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。"></a>3. 扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。</h3><h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><h3 id="先创建一个静态类叫StringExtension"><a href="#先创建一个静态类叫StringExtension" class="headerlink" title="先创建一个静态类叫StringExtension"></a>先创建一个静态类叫StringExtension</h3><h3 id="然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1"><a href="#然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1" class="headerlink" title="然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1"></a>然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1</h3><h3 id="控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用"><a href="#控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用" class="headerlink" title="控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用"></a>控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用</h3><pre><code class="csharp">public static class StringExtension
+{
+    /// &lt;summary&gt;
+    /// Remark：判断输入的是不是1
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;input&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static bool IsOne(this int input)
+    {
+        if (input == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre>
+<h3 id="接口调用方法，传参为1，返回true"><a href="#接口调用方法，传参为1，返回true" class="headerlink" title="接口调用方法，传参为1，返回true"></a>接口调用方法，传参为1，返回true</h3><a href="code.png" data-fancybox="images" data-caption="调用接口"><img src="code.png"></a>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。"><a href="#扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。" class="headerlink" title="- 扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。"></a>- 扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。</h3><h3 id="如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。"><a href="#如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。" class="headerlink" title="- 如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。"></a>- 如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。</h3><h3 id="当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）"><a href="#当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）" class="headerlink" title="- 当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）"></a>- 当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）</h3><h3 id="扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。"><a href="#扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。" class="headerlink" title="- 扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。"></a>- 扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。</h3>
+                </div>
+                <!-- 赞赏 -->
+                <div class="single-reward">
+                  <div class="reward-open">赏
+                    <div class="reward-main">
+                      <ul class="reward-row">
+                        <li class="alipay-code"><img
+                            src="https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/images/alipay.jpg"></li>
+                        <li class="wechat-code"><img
+                            src="https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/images/wechatpay.png">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- 赞赏 -->
+                <!-- .entry-content -->
+                <!-- data-disabled="diandian, tencent" -->
+                <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled=""></div>
+                <footer class="post-footer">
+                  <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+                      target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>
+                      知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+                  <div class="post-tags">
+                  </div>
+                  <div class="post-share">
+                    <div class="social-share sharehidden share-component"></div>
+                    <i class="iconfont show-share icon-forward"></i>
+                  </div>
+                </footer>
+                <!-- .entry-footer -->
+          </article>
+          <!-- #post-## -->
+          <div class="toc" style="background: none;"></div>
+          <section class="post-squares nextprev">
+            
+              
+                <div class="post-nepre half previous">
+                  
+                        <a href="/DotNET/CSharp_Interview_ques_1/" rel="prev">
+                          <div class="background">
+                            <img class="lazyload" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg"
+                              style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                              onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg">
+                          </div>
+                          <span class="label">
+                            Previous Post</span>
+                          <div class="info">
+                            <h3>
+                              C#常见算法题
+                            </h3>
+                            <hr>
+                          </div>
+                        </a>
+                    </div>
+                    
+                      
+                        
+                          <div class="post-nepre half next">
+                            
+                                  <a href="/DotNET/WebAPI_Exception/" rel="next">
+                                    <div class="background">
+                                      <img class="lazyload" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
+                                        data-src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg"
+                                        style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                                        onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/bg.jpg">
+                                    </div>
+                                    <span class="label">
+                                      Next Post</span>
+                                    <div class="info">
+                                      <h3>
+                                        WebAPI全局异常处理
+                                      </h3>
+                                      <hr>
+                                    </div>
+                                  </a>
+                              </div>
+                              
+          </section>
+          
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        avatar: 'monsterid',
+        appId: "cbSBY3q77EE1UpivdrbefIqi-MdYXbMMI",
+        appKey: "RD6UuwP5oeceYmtT0Exdjs5w",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+            <section class="author-profile">
+              <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+                <!-- 页面底部头像统一，post页面可以不写 -->
+                <!-- <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a> -->
+                <a href="https://lovetianci.cn/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/cute.gif"
+                    itemprop="image" alt="Tianci" height="70" width="70"></a>
+                <div class="meta">
+                  <span class="title">Author</span>
+                  <h3 itemprop="name">
+                    <!-- 底部发帖人 -->
+                    <!-- <a href="" itemprop="url" rel="author"></a> -->
+                    <a href="https://lovetianci.cn/" itemprop="url" rel="author">
+                      Tianci
+                    </a>
+                  </h3>
+                </div>
+              </div>
+              <hr>
+              <!-- 底部文字从页面自定义方式 -->
+              <!-- <p><i class="iconfont icon-write"></i></p> -->
+              <p><i class="iconfont icon-write"></i>
+                被这风吹散的人说Ta爱的不深，被这雨淋湿的人说Ta不会冷
+              </p>
+            </section>
+        </main><!-- #main -->
+      </div><!-- #primary -->
+    </div>
+
+    
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <!-- cdn资源 -->
+        <img
+          src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/svg/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2021</p>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span id="timeDate">载入天数...&nbsp;&nbsp;</span><span id="times">载入时分秒...&nbsp;&nbsp;</span>
+        <span id="busuanzi_container_site_pv">您是第<span id="busuanzi_value_site_pv"></span>个访客&nbsp;&nbsp;</span>
+        <a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank"
+          style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">湘ICP备19020367号-1</a> <i
+          class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a
+          href="https://www.lovetianci.cn" target="_blank"
+          style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Tianci </a>&copy 版权所有</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/clipboard.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/InsightSearch.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+
+<!-- Leancloud 操作库，为了防止和说说页面冲突，放到post.ejs保证生成不影响page页面-->
+<!-- <script type="text/javascript" src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!-- <script type="text/javascript" src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<!-- 偷来的Leancloud操作库 -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/drew233/css/lvaline.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@5.0.0/dist/av-min.js"></script> -->
+
+<!-- 淘汰的Leancloud 操作库 -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/av-min.js"></script> -->
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/js/Valine.js"></script>
+
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+
+<!-- 网页看板娘 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script> -->
+<!-- <script>L2Dwidget.init({"pluginRootPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/","pluginJsPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/lib/","pluginModelPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script> -->
+<script src="https://cdn.jsdelivr.net/gh/2016838087/live2d-widget@master/autoload.js"></script>
+
+<!-- 有趣的标题 -->
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/FunnyTitle.js"></script>
+
+<!-- 樱花飘落 -->
+<!--<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/sakura.js"></script>-->
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/snow.js"></script> -->
+
+<!-- 鼠标点击爱心 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/Love.js"></script> -->
+
+<!-- 鼠标点击爆炸特效 -->
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/clickBoom.js"></script>
+
+<!-- 鼠标滑动显示星星 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/stars.js"></script> -->
+
+<!-- 禁用F12和右键 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/noSomekey.js"></script> -->
+
+<!--动态线条背景-->
+<script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="-2" count="200"
+  src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/Lines.js">
+  </script>
+
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/2016838087/Artitalk-emoji@master/Video/", "name": "The Pet Girl of Sakurasou.mp4,Unbroken.mp4", "live": "close" }, "windowheight": "fixed", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  } else {
+    var Poi = { "pjax": "1", "movies": { "url": "https://cdn.jsdelivr.net/gh/2016838087/Artitalk-emoji@master/Video/", "name": "The Pet Girl of Sakurasou.mp4,Unbroken.mp4", "live": "open" }, "windowheight": "auto", "codelamp": "close", "ajaxurl": "", "order": "asc", "formpostion": "bottom" };
+  }
+/* ]]> */
+
+</script>
+<script>
+  $(document).ready(function () {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function () {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+<!-- 网站时间统计 -->
+<script>
+  var now = new Date();
+  function createtime() {
+    var grt = new Date("01/05/2020 00:00:00");//在此处修改你的建站时间
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒&nbsp;&nbsp;";
+  }
+  setInterval("createtime()", 250);
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <!-- 实现换肤功能 -->
+  <!-- <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+        <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+        <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+        <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+        <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+        <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+        <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+        <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+        <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+</div>
+<canvas id="night-mode-cover"></canvas>  -->
+  <!-- <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> 
+        <span id="open-skinMenu">切换主题  
+        <i class="iconfont icon-gear inline-block rotating"></i> 
+        </span>
+    </div>
+</div> -->
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/cute.gif">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Tianciの小窝</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/2016838087" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/DotNET/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  .NET
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/SQL/">
+                  <i class="fa fa-file-code-o" aria-hidden="true"></i>
+                  SQL
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Vue/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  Vue
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Hexo/">
+                  <i class="fa fa-houzz" aria-hidden="true"></i>
+                  Hexo
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Other/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  随笔
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-tags faa-shake" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/娱乐/">
+                  <i class="fa fa-gamepad" aria-hidden="true"></i>
+                  娱乐
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/技术/">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/面试题/">
+                  <i class="fa fa-television" aria-hidden="true"></i>
+                  面试
+                </a>
+              </li>
+            
+              <li>
+                <a href="/photo">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  相册
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-comments faa-shake" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/mood/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-commenting-o faa-shake" aria-hidden="true"></i>
+            心情
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友链
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-meetup faa-shake" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse faa-shake" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2020 TianciBlog</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/css/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2742570554"
+
+    server="tencent"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="list"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+    hideLrc="false"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

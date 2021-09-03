@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>TianciBlog</title>
+  
+  <subtitle>Tianciの小窝</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="/"/>
+  <updated>2021-09-03T02:14:27.171Z</updated>
+  <id>/</id>
+  
+  <author>
+    <name>Tianci</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Layui小知识</title>
+    <link href="/Other/Layui_First/"/>
+    <id>/Other/Layui_First/</id>
+    <published>2021-08-19T15:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      ASP.NET Core MVC+Layui
+    
+    </summary>
+    
+      <category term="Other" scheme="/categories/Other/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识ML.NET</title>
+    <link href="/Other/ML.NET/"/>
+    <id>/Other/ML.NET/</id>
+    <published>2021-08-11T15:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      .NET的机器学习
+    
+    </summary>
+    
+      <category term="Other" scheme="/categories/Other/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Appveyor持续集成Hexo</title>
+    <link href="/Other/Hexo_Appveyor/"/>
+    <id>/Other/Hexo_Appveyor/</id>
+    <published>2021-08-06T18:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      Appveyor持续集成第一章
+    
+    </summary>
+    
+      <category term="Other" scheme="/categories/Other/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习.NET Core Jwt授权与鉴权</title>
+    <link href="/DotNET/DotNETCore_WebAPI_Jwt/"/>
+    <id>/DotNET/DotNETCore_WebAPI_Jwt/</id>
+    <published>2021-03-03T01:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      .NET Core Jwt授权与鉴权
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WPF DataTable帮助类</title>
+    <link href="/DotNET/WPF_Learning_2/"/>
+    <id>/DotNET/WPF_Learning_2/</id>
+    <published>2021-01-21T11:30:00.000Z</published>
+    <updated>2021-09-03T02:14:27.277Z</updated>
+    
+    <summary type="html">
+    
+      常用公共方法
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WPF知识点</title>
+    <link href="/DotNET/WPF_Learning_1/"/>
+    <id>/DotNET/WPF_Learning_1/</id>
+    <published>2021-01-20T16:30:00.000Z</published>
+    <updated>2021-09-03T02:14:27.277Z</updated>
+    
+    <summary type="html">
+    
+      常用的操作和方法
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C#获取指定文件夹所有文件</title>
+    <link href="/DotNET/CSharp_File/"/>
+    <id>/DotNET/CSharp_File/</id>
+    <published>2020-12-30T17:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      C#文件操作
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows服务器搭建私人GitLab</title>
+    <link href="/Other/GitLab_Windows10/"/>
+    <id>/Other/GitLab_Windows10/</id>
+    <published>2020-10-11T21:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      Windows服务器搭建私人GitLab
+    
+    </summary>
+    
+      <category term="Other" scheme="/categories/Other/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.NET Core WebAPI使用EFCore连接MySQL</title>
+    <link href="/DotNET/DotNETCore_WebAPI_EFCore_MySQL/"/>
+    <id>/DotNET/DotNETCore_WebAPI_EFCore_MySQL/</id>
+    <published>2020-07-09T18:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      学习.NET Core第三章
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.NET Core WebAPI全局异常处理</title>
+    <link href="/DotNET/DotNETCore_WebAPI_Exception/"/>
+    <id>/DotNET/DotNETCore_WebAPI_Exception/</id>
+    <published>2020-07-03T16:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.171Z</updated>
+    
+    <summary type="html">
+    
+      学习.NET Core第二章
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.NET Core 部署IIS</title>
+    <link href="/DotNET/DotNETCore_IIS/"/>
+    <id>/DotNET/DotNETCore_IIS/</id>
+    <published>2020-06-10T15:30:00.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      学习.NET Core第一章
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL和SQL Server存储过程</title>
+    <link href="/SQL/MySQL_MSSQL_Stored_Procedure/"/>
+    <id>/SQL/MySQL_MSSQL_Stored_Procedure/</id>
+    <published>2020-05-11T17:40:00.000Z</published>
+    <updated>2021-09-03T02:14:27.194Z</updated>
+    
+    <summary type="html">
+    
+      数据库存储过程
+    
+    </summary>
+    
+      <category term="SQL" scheme="/categories/SQL/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue+elementui遇到的坑</title>
+    <link href="/Vue/Vue_Learning_2/"/>
+    <id>/Vue/Vue_Learning_2/</id>
+    <published>2020-04-24T21:30:00.000Z</published>
+    <updated>2021-09-03T02:14:27.277Z</updated>
+    
+    <summary type="html">
+    
+      刚入门vue所遇到的那些事2
+    
+    </summary>
+    
+      <category term="Vue" scheme="/categories/Vue/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习vue遇到的坑</title>
+    <link href="/Vue/Vue_Learning_1/"/>
+    <id>/Vue/Vue_Learning_1/</id>
+    <published>2020-04-23T16:25:00.000Z</published>
+    <updated>2021-09-03T02:14:27.277Z</updated>
+    
+    <summary type="html">
+    
+      刚入门vue所遇到的那些事
+    
+    </summary>
+    
+      <category term="Vue" scheme="/categories/Vue/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MVC连接MySQL教程</title>
+    <link href="/SQL/MySQL_MVC5_EF6/"/>
+    <id>/SQL/MySQL_MVC5_EF6/</id>
+    <published>2020-04-14T16:16:16.000Z</published>
+    <updated>2021-09-03T02:14:27.195Z</updated>
+    
+    <summary type="html">
+    
+      MVC5+EF6+MySQL连接
+    
+    </summary>
+    
+      <category term="SQL" scheme="/categories/SQL/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C# Reamrk特性</title>
+    <link href="/DotNET/CSharp_Remark_Attribute/"/>
+    <id>/DotNET/CSharp_Remark_Attribute/</id>
+    <published>2020-04-03T11:11:11.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      C#特性的原理
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C#理论面试题</title>
+    <link href="/DotNET/CSharp_Interview_ques_2/"/>
+    <id>/DotNET/CSharp_Interview_ques_2/</id>
+    <published>2020-03-06T13:14:20.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      C#基础理论知识
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="面试题" scheme="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C#常见算法题</title>
+    <link href="/DotNET/CSharp_Interview_ques_1/"/>
+    <id>/DotNET/CSharp_Interview_ques_1/</id>
+    <published>2020-03-03T10:20:30.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      面试常见的简单算法题
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="面试题" scheme="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C#扩展方法</title>
+    <link href="/DotNET/CSharp_Extension/"/>
+    <id>/DotNET/CSharp_Extension/</id>
+    <published>2020-02-10T22:00:00.000Z</published>
+    <updated>2021-09-03T02:14:27.156Z</updated>
+    
+    <summary type="html">
+    
+      扩展方法的创建与使用
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WebAPI全局异常处理</title>
+    <link href="/DotNET/WebAPI_Exception/"/>
+    <id>/DotNET/WebAPI_Exception/</id>
+    <published>2020-02-03T21:21:21.000Z</published>
+    <updated>2021-09-03T02:14:27.277Z</updated>
+    
+    <summary type="html">
+    
+      接口异常处理
+    
+    </summary>
+    
+      <category term="DotNET" scheme="/categories/DotNET/"/>
+    
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+</feed>
