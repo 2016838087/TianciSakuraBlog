@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-09-07T03:01:12.071Z</updated>
+  <updated>2021-09-13T06:54:09.046Z</updated>
   <id>/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="/Other/Layui_First/"/>
     <id>/Other/Layui_First/</id>
     <published>2021-08-19T15:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -41,7 +41,7 @@
     <link href="/Other/ML.NET/"/>
     <id>/Other/ML.NET/</id>
     <published>2021-08-11T15:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -61,7 +61,7 @@
     <link href="/Other/Hexo_Appveyor/"/>
     <id>/Other/Hexo_Appveyor/</id>
     <published>2021-08-06T18:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -81,7 +81,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_Jwt/"/>
     <id>/DotNET/DotNETCore_WebAPI_Jwt/</id>
     <published>2021-03-03T01:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -101,7 +101,7 @@
     <link href="/DotNET/WPF_Learning_2/"/>
     <id>/DotNET/WPF_Learning_2/</id>
     <published>2021-01-21T11:30:00.000Z</published>
-    <updated>2021-09-07T03:01:12.305Z</updated>
+    <updated>2021-09-13T06:54:09.152Z</updated>
     
     <summary type="html">
     
@@ -121,7 +121,7 @@
     <link href="/DotNET/WPF_Learning_1/"/>
     <id>/DotNET/WPF_Learning_1/</id>
     <published>2021-01-20T16:30:00.000Z</published>
-    <updated>2021-09-07T03:01:12.165Z</updated>
+    <updated>2021-09-13T06:54:09.152Z</updated>
     
     <summary type="html">
     
@@ -141,7 +141,7 @@
     <link href="/DotNET/CSharp_File/"/>
     <id>/DotNET/CSharp_File/</id>
     <published>2020-12-30T17:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.055Z</updated>
+    <updated>2021-09-13T06:54:09.030Z</updated>
     
     <summary type="html">
     
@@ -161,7 +161,7 @@
     <link href="/Other/GitLab_Windows10/"/>
     <id>/Other/GitLab_Windows10/</id>
     <published>2020-10-11T21:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -181,7 +181,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_EFCore_MySQL/"/>
     <id>/DotNET/DotNETCore_WebAPI_EFCore_MySQL/</id>
     <published>2020-07-09T18:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -201,7 +201,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_Exception/"/>
     <id>/DotNET/DotNETCore_WebAPI_Exception/</id>
     <published>2020-07-03T16:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -221,7 +221,7 @@
     <link href="/DotNET/DotNETCore_IIS/"/>
     <id>/DotNET/DotNETCore_IIS/</id>
     <published>2020-06-10T15:30:00.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -241,7 +241,7 @@
     <link href="/SQL/MySQL_MSSQL_Stored_Procedure/"/>
     <id>/SQL/MySQL_MSSQL_Stored_Procedure/</id>
     <published>2020-05-11T17:40:00.000Z</published>
-    <updated>2021-09-07T03:01:12.087Z</updated>
+    <updated>2021-09-13T06:54:09.061Z</updated>
     
     <summary type="html">
     
@@ -261,7 +261,7 @@
     <link href="/Vue/Vue_Learning_2/"/>
     <id>/Vue/Vue_Learning_2/</id>
     <published>2020-04-24T21:30:00.000Z</published>
-    <updated>2021-09-07T03:01:12.165Z</updated>
+    <updated>2021-09-13T06:54:09.136Z</updated>
     
     <summary type="html">
     
@@ -281,7 +281,7 @@
     <link href="/Vue/Vue_Learning_1/"/>
     <id>/Vue/Vue_Learning_1/</id>
     <published>2020-04-23T16:25:00.000Z</published>
-    <updated>2021-09-07T03:01:12.165Z</updated>
+    <updated>2021-09-13T06:54:09.136Z</updated>
     
     <summary type="html">
     
@@ -301,7 +301,7 @@
     <link href="/SQL/MySQL_MVC5_EF6/"/>
     <id>/SQL/MySQL_MVC5_EF6/</id>
     <published>2020-04-14T16:16:16.000Z</published>
-    <updated>2021-09-07T03:01:12.087Z</updated>
+    <updated>2021-09-13T06:54:09.061Z</updated>
     
     <summary type="html">
     
@@ -321,7 +321,7 @@
     <link href="/DotNET/CSharp_Remark_Attribute/"/>
     <id>/DotNET/CSharp_Remark_Attribute/</id>
     <published>2020-04-03T11:11:11.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -341,7 +341,7 @@
     <link href="/DotNET/CSharp_Interview_ques_2/"/>
     <id>/DotNET/CSharp_Interview_ques_2/</id>
     <published>2020-03-06T13:14:20.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -361,7 +361,7 @@
     <link href="/DotNET/CSharp_Interview_ques_1/"/>
     <id>/DotNET/CSharp_Interview_ques_1/</id>
     <published>2020-03-03T10:20:30.000Z</published>
-    <updated>2021-09-07T03:01:12.071Z</updated>
+    <updated>2021-09-13T06:54:09.046Z</updated>
     
     <summary type="html">
     
@@ -381,7 +381,7 @@
     <link href="/DotNET/CSharp_Extension/"/>
     <id>/DotNET/CSharp_Extension/</id>
     <published>2020-02-10T22:00:00.000Z</published>
-    <updated>2021-09-07T03:01:12.055Z</updated>
+    <updated>2021-09-13T06:54:09.030Z</updated>
     
     <summary type="html">
     
@@ -401,7 +401,7 @@
     <link href="/DotNET/WebAPI_Exception/"/>
     <id>/DotNET/WebAPI_Exception/</id>
     <published>2020-02-03T21:21:21.000Z</published>
-    <updated>2021-09-07T03:01:12.305Z</updated>
+    <updated>2021-09-13T06:54:09.152Z</updated>
     
     <summary type="html">
     
