@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-09-13T06:54:09.046Z</updated>
+  <updated>2021-09-22T08:43:43.582Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>抄的文案</title>
+    <link href="/Other/Copywriting_1/"/>
+    <id>/Other/Copywriting_1/</id>
+    <published>2021-09-22T16:20:00.000Z</published>
+    <updated>2021-09-22T08:43:43.582Z</updated>
+    
+    <summary type="html">
+    
+      文案
+    
+    </summary>
+    
+      <category term="Other" scheme="/categories/Other/"/>
+    
+    
+      <category term="娱乐" scheme="/tags/%E5%A8%B1%E4%B9%90/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Layui小知识</title>
     <link href="/Other/Layui_First/"/>
     <id>/Other/Layui_First/</id>
     <published>2021-08-19T15:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.614Z</updated>
     
     <summary type="html">
     
@@ -41,7 +61,7 @@
     <link href="/Other/ML.NET/"/>
     <id>/Other/ML.NET/</id>
     <published>2021-08-11T15:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.614Z</updated>
     
     <summary type="html">
     
@@ -61,7 +81,7 @@
     <link href="/Other/Hexo_Appveyor/"/>
     <id>/Other/Hexo_Appveyor/</id>
     <published>2021-08-06T18:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -81,7 +101,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_Jwt/"/>
     <id>/DotNET/DotNETCore_WebAPI_Jwt/</id>
     <published>2021-03-03T01:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -101,7 +121,7 @@
     <link href="/DotNET/WPF_Learning_2/"/>
     <id>/DotNET/WPF_Learning_2/</id>
     <published>2021-01-21T11:30:00.000Z</published>
-    <updated>2021-09-13T06:54:09.152Z</updated>
+    <updated>2021-09-22T08:43:43.709Z</updated>
     
     <summary type="html">
     
@@ -121,7 +141,7 @@
     <link href="/DotNET/WPF_Learning_1/"/>
     <id>/DotNET/WPF_Learning_1/</id>
     <published>2021-01-20T16:30:00.000Z</published>
-    <updated>2021-09-13T06:54:09.152Z</updated>
+    <updated>2021-09-22T08:43:43.709Z</updated>
     
     <summary type="html">
     
@@ -141,7 +161,7 @@
     <link href="/DotNET/CSharp_File/"/>
     <id>/DotNET/CSharp_File/</id>
     <published>2020-12-30T17:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.030Z</updated>
+    <updated>2021-09-22T08:43:43.582Z</updated>
     
     <summary type="html">
     
@@ -161,7 +181,7 @@
     <link href="/Other/GitLab_Windows10/"/>
     <id>/Other/GitLab_Windows10/</id>
     <published>2020-10-11T21:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -181,7 +201,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_EFCore_MySQL/"/>
     <id>/DotNET/DotNETCore_WebAPI_EFCore_MySQL/</id>
     <published>2020-07-09T18:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -201,7 +221,7 @@
     <link href="/DotNET/DotNETCore_WebAPI_Exception/"/>
     <id>/DotNET/DotNETCore_WebAPI_Exception/</id>
     <published>2020-07-03T16:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -221,7 +241,7 @@
     <link href="/DotNET/DotNETCore_IIS/"/>
     <id>/DotNET/DotNETCore_IIS/</id>
     <published>2020-06-10T15:30:00.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.598Z</updated>
     
     <summary type="html">
     
@@ -241,7 +261,7 @@
     <link href="/SQL/MySQL_MSSQL_Stored_Procedure/"/>
     <id>/SQL/MySQL_MSSQL_Stored_Procedure/</id>
     <published>2020-05-11T17:40:00.000Z</published>
-    <updated>2021-09-13T06:54:09.061Z</updated>
+    <updated>2021-09-22T08:43:43.615Z</updated>
     
     <summary type="html">
     
@@ -261,7 +281,7 @@
     <link href="/Vue/Vue_Learning_2/"/>
     <id>/Vue/Vue_Learning_2/</id>
     <published>2020-04-24T21:30:00.000Z</published>
-    <updated>2021-09-13T06:54:09.136Z</updated>
+    <updated>2021-09-22T08:43:43.709Z</updated>
     
     <summary type="html">
     
@@ -281,7 +301,7 @@
     <link href="/Vue/Vue_Learning_1/"/>
     <id>/Vue/Vue_Learning_1/</id>
     <published>2020-04-23T16:25:00.000Z</published>
-    <updated>2021-09-13T06:54:09.136Z</updated>
+    <updated>2021-09-22T08:43:43.709Z</updated>
     
     <summary type="html">
     
@@ -301,7 +321,7 @@
     <link href="/SQL/MySQL_MVC5_EF6/"/>
     <id>/SQL/MySQL_MVC5_EF6/</id>
     <published>2020-04-14T16:16:16.000Z</published>
-    <updated>2021-09-13T06:54:09.061Z</updated>
+    <updated>2021-09-22T08:43:43.615Z</updated>
     
     <summary type="html">
     
@@ -321,7 +341,7 @@
     <link href="/DotNET/CSharp_Remark_Attribute/"/>
     <id>/DotNET/CSharp_Remark_Attribute/</id>
     <published>2020-04-03T11:11:11.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.582Z</updated>
     
     <summary type="html">
     
@@ -341,7 +361,7 @@
     <link href="/DotNET/CSharp_Interview_ques_2/"/>
     <id>/DotNET/CSharp_Interview_ques_2/</id>
     <published>2020-03-06T13:14:20.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.582Z</updated>
     
     <summary type="html">
     
@@ -361,7 +381,7 @@
     <link href="/DotNET/CSharp_Interview_ques_1/"/>
     <id>/DotNET/CSharp_Interview_ques_1/</id>
     <published>2020-03-03T10:20:30.000Z</published>
-    <updated>2021-09-13T06:54:09.046Z</updated>
+    <updated>2021-09-22T08:43:43.582Z</updated>
     
     <summary type="html">
     
@@ -381,31 +401,11 @@
     <link href="/DotNET/CSharp_Extension/"/>
     <id>/DotNET/CSharp_Extension/</id>
     <published>2020-02-10T22:00:00.000Z</published>
-    <updated>2021-09-13T06:54:09.030Z</updated>
+    <updated>2021-09-22T08:43:43.567Z</updated>
     
     <summary type="html">
     
       扩展方法的创建与使用
-    
-    </summary>
-    
-      <category term="DotNET" scheme="/categories/DotNET/"/>
-    
-    
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WebAPI全局异常处理</title>
-    <link href="/DotNET/WebAPI_Exception/"/>
-    <id>/DotNET/WebAPI_Exception/</id>
-    <published>2020-02-03T21:21:21.000Z</published>
-    <updated>2021-09-13T06:54:09.152Z</updated>
-    
-    <summary type="html">
-    
-      接口异常处理
     
     </summary>
     
