@@ -24,7 +24,7 @@
 <meta property="og:description" content="一些公共方法">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/34.jpg">
-<meta property="og:updated_time" content="2021-12-02T03:46:06.423Z">
+<meta property="og:updated_time" content="2021-12-30T07:03:56.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=".NET Core导出PDF和Excel">
 <meta name="twitter:description" content="一些公共方法">
@@ -363,16 +363,16 @@
         </span>
         <span class="bull">
           ·</span>
-        2021-11-30
+        2021-12-30
           <span class="bull">
             ·</span>
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:999
+          本章字数:1.5k
             <span class="bull">
               ·</span>
-            总字数:11.9k
+            总字数:12.4k
               <!-- <span>
           
         </span> -->
@@ -393,251 +393,335 @@
 <h3 id="导出Excel需要导入EPPlus包"><a href="#导出Excel需要导入EPPlus包" class="headerlink" title="导出Excel需要导入EPPlus包"></a>导出Excel需要导入EPPlus包</h3><h3 id="导入命名空间"><a href="#导入命名空间" class="headerlink" title="导入命名空间"></a>导入命名空间</h3><pre><code class="csharp">using OfficeOpenXml;
 </code></pre>
 <h3 id="示例代码如下"><a href="#示例代码如下" class="headerlink" title="示例代码如下"></a>示例代码如下</h3><pre><code class="csharp">/// &lt;summary&gt;
-/// 导出Excel
+/// 请求接口直接下载Excel
 /// &lt;/summary&gt;
-/// &lt;param name=&quot;DataList&quot;&gt;数据集&lt;/param&gt;
-/// &lt;param name=&quot;FileName&quot;&gt;文件名（可空）&lt;/param&gt;
 /// &lt;returns&gt;&lt;/returns&gt;
-public string GetExcel(List&lt;DataEntity&gt; DataList, string FileName)
+[HttpGet]
+public async Task&lt;IActionResult&gt; GetExcel()
 {
-    string WebRootFolder = Directory.GetCurrentDirectory() + @&quot;/TaskExcel/&quot;;
-    if (!Directory.Exists(WebRootFolder))
-    {
-        Directory.CreateDirectory(WebRootFolder);
-    }
-    if (string.IsNullOrWhiteSpace(FileName))
-    {
-        FileName = Guid.NewGuid().ToString();
-    }
-    FileInfo file = new FileInfo(Path.Combine(WebRootFolder, FileName + &quot;.xlsx&quot;));
-    //指定EPPlus使用非商业证书
+    string fileName = $&quot;{Guid.NewGuid()}.xlsx&quot;;
+    var stream = new MemoryStream();
     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-    using (ExcelPackage package = new ExcelPackage(file))
+    using (ExcelPackage package = new ExcelPackage(stream))
     {
         // 添加worksheet
-        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(&quot;DeliveryReceipt&quot;);
+        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(&quot;DeliveryReceiptSignLog&quot;);
         //添加头
         //worksheet.Cells.Style.ShrinkToFit = true;//单元格自动适应大小
-        worksheet.Cells[1, 1].Value = &quot;姓名&quot;;
-        worksheet.Cells[1, 2].Value = &quot;年龄&quot;;
-        worksheet.Cells[1, 3].Value = &quot;余额&quot;;
+        worksheet.Cells[1, 1].Value = &quot;跟踪码&quot;;
+        worksheet.Cells[1, 2].Value = &quot;收款金额&quot;;
+        worksheet.Cells[1, 3].Value = &quot;收款方式&quot;;
+        worksheet.Cells[1, 4].Value = &quot;POS流水号&quot;;
+        worksheet.Cells[1, 5].Value = &quot;终端号&quot;;
         worksheet.Column(1).Width = 25;
         worksheet.Column(2).Width = 25;
-        worksheet.Column(3).Width = 10;
-        worksheet.Column(3).Style.Numberformat.Format = &quot;￥#,##0.00&quot;;//金额格式
-
-        int rowCount = 1;//行
-        int cellCount = 0;//列
-        for (int i = 0; i &lt; DataList.Count; i++)
-        {
-            rowCount++;
-            worksheet.Cells[rowCount, ++cellCount].Value = DataList[i].UserName;
-            worksheet.Cells[rowCount, ++cellCount].Value = DataList[i].Age;
-            worksheet.Cells[rowCount, ++cellCount].Value = DataList[i].Money;
-            cellCount = 0;//重置
-        }
+        worksheet.Column(3).Width = 25;
+        worksheet.Column(4).Width = 25;
+        worksheet.Column(5).Width = 25;
+        worksheet.Column(2).Style.Numberformat.Format = &quot;￥#,##0.00&quot;;//金额格式
+        //从第二行第三列到第一万行第三列，三列被设置为下拉框
+        var unitmeasure = worksheet.DataValidations.AddListValidation(worksheet.Cells[2, 3, 10000, 3].Address);
+        unitmeasure.Formula.Values.Add(&quot;现金&quot;);
+        unitmeasure.Formula.Values.Add(&quot;刷卡&quot;);
         package.Save();
     }
-    return &quot;/TaskExcel/&quot; + FileName + &quot;.xlsx&quot;;
+    stream.Position = 0;
+    return await Task.FromResult(File(stream, &quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot;, fileName));
 }
 </code></pre>
 <h3 id="NET-Core导出PDF需要导入iTextSharp-LGPLv2-Core"><a href="#NET-Core导出PDF需要导入iTextSharp-LGPLv2-Core" class="headerlink" title=".NET Core导出PDF需要导入iTextSharp.LGPLv2.Core"></a>.NET Core导出PDF需要导入iTextSharp.LGPLv2.Core</h3><h3 id="导入命名空间-1"><a href="#导入命名空间-1" class="headerlink" title="导入命名空间"></a>导入命名空间</h3><pre><code class="csharp">using iTextSharp.text;
 using iTextSharp.text.pdf;
 </code></pre>
-<h3 id="示例代码如下-1"><a href="#示例代码如下-1" class="headerlink" title="示例代码如下"></a>示例代码如下</h3><pre><code class="csharp">public string GetPDF(List&lt;DataEntity&gt; DataList,string FileName)
+<h3 id="Controller代码如下"><a href="#Controller代码如下" class="headerlink" title="Controller代码如下"></a>Controller代码如下</h3><pre><code class="csharp">/// &lt;summary&gt;
+/// 直接获取文件（PDF）
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+[HttpGet]
+public async Task&lt;IActionResult&gt; GetPDF()
 {
-    //生成pdf
-    Document document = new Document();
-    //根目录下添加文件夹存放PDF
-    string fileFolder = Directory.GetCurrentDirectory() + @&quot;/TaskPDF/&quot;;
-    if (!Directory.Exists(fileFolder))
+    string fileName = $&quot;{Guid.NewGuid()}.pdf&quot;;
+    DataEntity data = new DataEntity();
+    data.TaskName = &quot;SHXH0514huangjinjin05142020/09/14-3&quot;;
+    data.SiteName = &quot;浦东配送站&quot;;
+    var users = new List&lt;User&gt;()
     {
-        Directory.CreateDirectory(fileFolder);
+        new User
+        {
+            Id=1,
+            OrderNo=&quot;200911SHDF01634290&quot;,
+            Route=&quot;SHXH10b&quot;,
+            FromToTime=&quot;2020-09-13 13:33:00 14:33:00&quot;,
+            Address=&quot;上海 上海市 黄浦区南京东路街道9999999999999&quot;,
+            Remark=&quot;（生日快乐）&quot;,
+            Count=1,
+            Amount=0.01M
+        },
+        new User
+        {
+            Id=2,
+            OrderNo=&quot;210831SHKF01938125&quot;,
+            Route=&quot;SHCN#2a&quot;,
+            FromToTime=&quot;2021-09-03 10:00:00 10:30:00&quot;,
+            Address=&quot;上海 上海市 徐汇区田林路140号&quot;,
+            Remark=&quot;&quot;,
+            Count=1,
+            Amount=0.00M+6
+        }
+    };
+
+    data.users = users;
+    if (PDFHelper.GetPDF(data).Length&gt;0)
+    {
+        var stream = new MemoryStream(PDFHelper.GetPDF(data));
+        return await Task.FromResult(File(stream, &quot;application/pdf&quot;, fileName));
     }
-    if (string.IsNullOrWhiteSpace(FileName))
+    return null;
+}
+</code></pre>
+<h3 id="PDFHelper-GetPDF代码全篇"><a href="#PDFHelper-GetPDF代码全篇" class="headerlink" title="PDFHelper.GetPDF代码全篇"></a>PDFHelper.GetPDF代码全篇</h3><h3 id="需导入命名空间"><a href="#需导入命名空间" class="headerlink" title="需导入命名空间"></a>需导入命名空间</h3><pre><code class="csharp">using iTextSharp.text;
+using iTextSharp.text.pdf;
+</code></pre>
+<pre><code class="csharp">public static class PDFHelper
+{
+    /// &lt;summary&gt;
+    /// 返回字节
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static byte[] GetPDF(DataEntity data)
     {
-        FileName = Guid.NewGuid().ToString();
-    }
-    string filepath = fileFolder + FileName + &quot;.pdf&quot;;
-    var fileStream = File.Create(filepath);
-    PdfWriter pw = PdfWriter.GetInstance(document, fileStream);
-    document.Open();
-    for (int i = 0; i &lt; DataList.Count; i++)
-    {
-        document.NewPage();
+        //生成pdf
+        Document document = new Document();
+        //var fileStream = new MemoryStream();
+        string fileName = &quot;测试.pdf&quot;;
+        var fileStream = File.Create(fileName);//C:\\Users\\Tianci\\Desktop\\PDF\\
+        PdfWriter pw = PdfWriter.GetInstance(document, fileStream);
+        document.Open();
         //指定字体文件，IDENTITY_H：支持中文
         string fontpath = @&quot;C:\Windows\Fonts\SIMHEI.TTF&quot;;
         BaseFont customfont = BaseFont.CreateFont(fontpath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         //设置字体颜色样式
         var baseFont = new Font(customfont)
         {
-            Color = new BaseColor(0, 0, 0),//设置字体颜色
+            //System.Drawing.Color.Black
+            Color = new BaseColor(0,0,0),  //设置字体颜色
             Size = 8  //字体大小
         };
 
         #region 头部
+        //定义table行列数据
+        //PdfPTable tableRow_1 = new PdfPTable(1);  //生成只有一列的行数据
+        //tableRow_1.DefaultCell.Border = Rectangle.NO_BORDER;  //无边框
+        //tableRow_1.WidthPercentage = 100;
+        //tableRow_1.DefaultCell.MinimumHeight = 80f; //高度
+        //float[] headWidths_1 = new float[] { 3000f }; //宽度
+        //tableRow_1.SetWidths(headWidths_1);
+
 
         //定义字体样式
         var headerStyle = new Font(customfont)
         {
-            Color = new BaseColor(0, 0, 0),
+            Color = new BaseColor(0,0,0),//System.Drawing.Color.Black
             Size = 18,
         };
+        //var Row_1_Cell_1 = new PdfPCell(new Paragraph(&quot;配送任务单&quot;, headerStyle));
+        //Row_1_Cell_1.HorizontalAlignment = Element.ALIGN_CENTER;//居中
+        //tableRow_1.AddCell(Row_1_Cell_1);
 
-        var head = new Paragraph(&quot;配送任务单&quot;, headerStyle)
-        {
-            IndentationLeft = 200f
-        };
+
+        var head = new Paragraph(&quot;配送任务单&quot;, headerStyle);
+        head.IndentationLeft = 200f;
 
         var headerStyle2 = new Font(customfont)
         {
-            Color = new BaseColor(0, 0, 0),
+            Color = new BaseColor(0,0,0),//System.Drawing.Color.Black
             Size = 10,
         };
-        var para = new Paragraph(string.Format(&quot;用户姓名：{0}            昵称：{1}&quot;, DataList[i].UserName, DataList[i].NickName), headerStyle2)
-        {
-            IndentationLeft = -30f
-        };
+        var para = new Paragraph(string.Format(&quot;任务名称：{0}            站点：{1}&quot;, data.TaskName, data.SiteName), headerStyle2);
+
+        para.IndentationLeft = -30f;
 
         var placeholder = new Paragraph(&quot;   &quot;, headerStyle2);//上方文字与表格相隔间距
 
-        PdfPTable tableRow_2 = new PdfPTable(8)
-        {
-            TotalWidth = 580f,
-            LockedWidth = true
-        };
+        PdfPTable tableRow_2 = new PdfPTable(8);
+        tableRow_2.TotalWidth = 580f;
+        tableRow_2.LockedWidth = true;
         tableRow_2.DefaultCell.Border = Rectangle.NO_BORDER;
         tableRow_2.WidthPercentage = 100;
         tableRow_2.DefaultCell.MinimumHeight = 80f;
+        //float[] headWidths_2 = new float[] { 100f, 300f, 120f, 300f, 540f, 300f, 100f, 200f };
         float[] headWidths_2 = new float[] { 50f, 120f, 60f, 150f, 220f, 140f, 50f, 70f };//搭配TotalWidth和LockedWidth使用
 
         tableRow_2.SetWidths(headWidths_2);
 
-        var Row_2_Cell_1 = new PdfPCell(new Paragraph(&quot;序号&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,//文字居中
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_1 = new PdfPCell(new Paragraph(&quot;序号&quot;, baseFont));
+        Row_2_Cell_1.HorizontalAlignment = Element.ALIGN_CENTER;//文字居中
+        Row_2_Cell_1.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_1);
 
-        var Row_2_Cell_2 = new PdfPCell(new Paragraph(&quot;第一列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_2 = new PdfPCell(new Paragraph(&quot;跟踪代码&quot;, baseFont));
+        Row_2_Cell_2.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_2.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_2);
 
-        var Row_2_Cell_3 = new PdfPCell(new Paragraph(&quot;第二列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_3 = new PdfPCell(new Paragraph(&quot;线路&quot;, baseFont));
+        Row_2_Cell_3.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_3.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_3);
 
-        var Row_2_Cell_4 = new PdfPCell(new Paragraph(&quot;第三列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_4 = new PdfPCell(new Paragraph(&quot;配送时间&quot;, baseFont));
+        Row_2_Cell_4.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_4.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_4);
 
-        var Row_2_Cell_5 = new PdfPCell(new Paragraph(&quot;第四列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_5 = new PdfPCell(new Paragraph(&quot;地址&quot;, baseFont));
+        Row_2_Cell_5.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_5.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_5);
 
-        var Row_2_Cell_6 = new PdfPCell(new Paragraph(&quot;第五列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_6 = new PdfPCell(new Paragraph(&quot;备注&quot;, baseFont));
+        Row_2_Cell_6.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_6.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_6);
 
-        var Row_2_Cell_7 = new PdfPCell(new Paragraph(&quot;第六列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_7 = new PdfPCell(new Paragraph(&quot;商品数&quot;, baseFont));
+        Row_2_Cell_7.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_7.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_7);
 
-        var Row_2_Cell_8 = new PdfPCell(new Paragraph(&quot;第七列&quot;, baseFont))
-        {
-            HorizontalAlignment = Element.ALIGN_CENTER,
-            BackgroundColor = BaseColor.LightGray
-        };
+        var Row_2_Cell_8 = new PdfPCell(new Paragraph(&quot;应收金额&quot;, baseFont));
+        Row_2_Cell_8.HorizontalAlignment = Element.ALIGN_CENTER;
+        Row_2_Cell_8.BackgroundColor = BaseColor.LightGray;
         tableRow_2.AddCell(Row_2_Cell_8);
 
         document.Add(head);
         document.Add(placeholder);
         document.Add(para);
         document.Add(placeholder);
+        //document.Add(tableRow_1);
         document.Add(tableRow_2);
         #endregion
 
         #region 填充List数据
-        Type t = new TaskList().GetType();//获得该类的Type
 
-        for (int j = 0; j &lt; DataList[i].TaskList.Count; j++)
+
+        Type t = new User().GetType();//获得该类的Type
+
+        for (int i = 0; i &lt; data.users.Count; i++)
         {
-            PdfPTable tableRow_3 = new PdfPTable(8)
-            {
-                TotalWidth = 580f,
-                LockedWidth = true
-            };
+            PdfPTable tableRow_3 = new PdfPTable(8);
+            tableRow_3.TotalWidth = 580f;
+            tableRow_3.LockedWidth = true;
             tableRow_3.DefaultCell.Border = Rectangle.NO_BORDER;
             tableRow_3.WidthPercentage = 100;
             tableRow_3.DefaultCell.MinimumHeight = 80f;
+            //float[] headWidths_3 = new float[] { 100f, 300f, 120f, 300f, 540f, 300f, 100f, 200f };
             float[] headWidths_3 = new float[] { 50f, 120f, 60f, 150f, 220f, 140f, 50f, 70f };
             tableRow_3.SetWidths(headWidths_3);
             foreach (PropertyInfo pi in t.GetProperties())//遍历属性值
             {
-                var value = pi.GetValue(DataList[i].TaskList[j]).ToString();
+                var value = pi.GetValue(data.users[i]).ToString();
                 var txt = new Paragraph(value, baseFont);
                 var cell = new PdfPCell(txt);
                 tableRow_3.AddCell(cell);
             }
             document.Add(tableRow_3);
         }
-    }
-    #endregion
 
-    //页脚
-    PDFFooter footer = new PDFFooter();
-    footer.OnEndPage(pw, document);
-    document.Close();
-    fileStream.Dispose();
-    fileStream.Close();
-    return &quot;/TaskPDF/&quot; + FileName + &quot;.pdf&quot;;
-}
-public class PDFFooter : PdfPageEventHelper
-{
-    public override void OnOpenDocument(PdfWriter writer, Document document)
+        #endregion
+
+        //页脚
+        PDFFooter footer = new PDFFooter();
+        footer.OnEndPage(pw, document);
+        document.Close();
+        fileStream.Close();
+        fileStream.Dispose();
+        return GetFileStream(fileName);
+    }
+
+    /// &lt;summary&gt;
+    /// 文件转成字节
+    /// 并删除文件
+    /// 返回字节
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;filePath&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static byte[] GetFileStream(string filePath)
     {
-        base.OnOpenDocument(writer, document);
-        PdfPTable tabFot = new PdfPTable(new float[] { 1F })
+        var byteBuffer = File.ReadAllBytes(filePath);
+        if (byteBuffer.Length &gt; 0)
         {
-            SpacingAfter = 10F
-        };
-        PdfPCell cell;
-        cell = new PdfPCell(new Phrase(&quot;Header&quot;));
-        tabFot.AddCell(cell);
-        tabFot.WriteSelectedRows(0, -1, 150, document.Top, writer.DirectContent);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            return byteBuffer;
+        }
+        return null;
     }
-    public override void OnStartPage(PdfWriter writer, Document document)
+    public class PDFFooter : PdfPageEventHelper
     {
-        base.OnStartPage(writer, document);
+        // write on top of document
+        public override void OnOpenDocument(PdfWriter writer, Document document)
+        {
+            base.OnOpenDocument(writer, document);
+            PdfPTable tabFot = new PdfPTable(new float[] { 1F });
+            tabFot.SpacingAfter = 10F;
+            PdfPCell cell;
+            //tabFot.TotalWidth = 300F;
+            cell = new PdfPCell(new Phrase(&quot;Header&quot;));
+            tabFot.AddCell(cell);
+            tabFot.WriteSelectedRows(0, -1, 150, document.Top, writer.DirectContent);
+        }
+
+        // write on start of each page
+        public override void OnStartPage(PdfWriter writer, Document document)
+        {
+            base.OnStartPage(writer, document);
+        }
+
+        // write on end of each page
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            base.OnEndPage(writer, document);
+
+            var footFont = FontFactory.GetFont(&quot;Lato&quot;, 12 * 0.667f, new BaseColor(60, 60, 60));//*
+        }
+
+        //write on close of document
+        public override void OnCloseDocument(PdfWriter writer, Document document)
+        {
+            base.OnCloseDocument(writer, document);
+        }
     }
-    public override void OnEndPage(PdfWriter writer, Document document)
-    {
-        base.OnEndPage(writer, document);
-        var footFont = FontFactory.GetFont(&quot;Lato&quot;, 12 * 0.667f, new BaseColor(60, 60, 60));//*
-    }
-    public override void OnCloseDocument(PdfWriter writer, Document document)
-    {
-        base.OnCloseDocument(writer, document);
-    }
+}
+
+public class User
+{
+    public int Id { get; set; }
+
+    public string OrderNo { get; set; }
+
+    public string Route { get; set; }
+
+    public string FromToTime { get; set; }
+
+    public string Address { get; set; }
+
+    public string Remark { get; set; }
+
+    public int Count { get; set; }
+
+    public decimal Amount { get; set; }
+}
+
+public class DataEntity
+{
+    public string TaskName { get; set; }
+
+    public string SiteName { get; set; }
+
+    public List&lt;User&gt; users = new List&lt;User&gt;();
 }
 </code></pre>
 <h3 id="散会"><a href="#散会" class="headerlink" title="散会!!!"></a>散会!!!</h3><a href="dalao.gif" data-fancybox="images" data-caption="我怎么这么垃圾，我要有技术会是这鬼样？"><img src="dalao.gif"></a>
@@ -832,13 +916,16 @@ public class PDFFooter : PdfPageEventHelper
 <!-- 网页看板娘 -->
 <!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script> -->
 <!-- <script>L2Dwidget.init({"pluginRootPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/","pluginJsPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/lib/","pluginModelPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/2016838087/TianciShokaBlog@master/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script> -->
-<script src="https://cdn.jsdelivr.net/gh/2016838087/live2d-widget@master/autoload.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/live2d-widget@master/autoload.js"></script> -->
+<!-- 关闭看板娘 -->
 
 <!-- 有趣的标题 -->
 <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/FunnyTitle.js"></script>
 
 <!-- 樱花飘落 -->
-<!--<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/sakura.js"></script>-->
+<!-- <script src="http://139.155.75.229:81/Upload/Images/1640846639759.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/sakura.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/cdn/js/snow.js"></script> -->
 
 <!-- 鼠标点击爱心 -->
