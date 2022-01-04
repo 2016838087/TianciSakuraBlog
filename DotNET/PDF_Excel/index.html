@@ -24,7 +24,7 @@
 <meta property="og:description" content="一些公共方法">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/2016838087/SakuraHexoFile@master/themes/images/background/34.jpg">
-<meta property="og:updated_time" content="2021-12-30T07:03:56.718Z">
+<meta property="og:updated_time" content="2022-01-04T09:06:25.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=".NET Core导出PDF和Excel">
 <meta name="twitter:description" content="一些公共方法">
@@ -369,10 +369,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:1.5k
+          本章字数:1.6k
             <span class="bull">
               ·</span>
-            总字数:12.4k
+            总字数:12.7k
               <!-- <span>
           
         </span> -->
@@ -423,6 +423,36 @@ public async Task&lt;IActionResult&gt; GetExcel()
         var unitmeasure = worksheet.DataValidations.AddListValidation(worksheet.Cells[2, 3, 10000, 3].Address);
         unitmeasure.Formula.Values.Add(&quot;现金&quot;);
         unitmeasure.Formula.Values.Add(&quot;刷卡&quot;);
+        int rowCount = 1;//行
+        int cellCount = 0;//列
+        //添加数据（循环可改为数据集）
+        for (int i = 1; i &lt;= 20; i++)
+        {
+            rowCount++;
+            worksheet.Cells[rowCount, ++cellCount].Value = i;
+            worksheet.Cells[rowCount, ++cellCount].Value = i;
+            worksheet.Cells[rowCount, ++cellCount].Value = unitmeasure.Formula.Values[1];
+            worksheet.Cells[rowCount, ++cellCount].Value = i;
+            worksheet.Cells[rowCount, ++cellCount].Value = i;
+            cellCount = 0;//重置
+        }
+        worksheet.Protection.IsProtected = true;//设置是否进行锁定
+        worksheet.Protection.SetPassword(&quot;123456&quot;);//设置密码
+        worksheet.Protection.AllowAutoFilter = false;//下面是一些锁定时权限的设置
+        worksheet.Protection.AllowDeleteColumns = false;
+        worksheet.Protection.AllowDeleteRows = false;
+        worksheet.Protection.AllowEditScenarios = false;
+        worksheet.Protection.AllowEditObject = false;
+        worksheet.Protection.AllowFormatCells = false;
+        worksheet.Protection.AllowFormatColumns = false;
+        worksheet.Protection.AllowFormatRows = false;
+        worksheet.Protection.AllowInsertColumns = false;
+        worksheet.Protection.AllowInsertHyperlinks = false;
+        worksheet.Protection.AllowInsertRows = false;
+        worksheet.Protection.AllowPivotTables = false;
+        worksheet.Protection.AllowSelectLockedCells = false;
+        worksheet.Protection.AllowSelectUnlockedCells = false;
+        worksheet.Protection.AllowSort = false;
         package.Save();
     }
     stream.Position = 0;
