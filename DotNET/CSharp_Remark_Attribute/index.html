@@ -24,7 +24,7 @@
 <meta property="og:description" content="C#特性的原理">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="/images/background/37.jpg">
-<meta property="og:updated_time" content="2022-05-26T12:48:31.871Z">
+<meta property="og:updated_time" content="2022-05-26T13:13:50.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C# Reamrk特性">
 <meta name="twitter:description" content="C#特性的原理">
@@ -56,8 +56,8 @@
   mashiro_option.site_name = "Tianciの小窝";
   mashiro_option.author_name = "の小窝";
   mashiro_option.site_url = "https://lovetianci.cn/";
-  mashiro_option.v_appId = "Q9nIjLgxRKqhSFbITx3Kfdox-MdYXbMMI";
-  mashiro_option.v_appKey = "73gltLSCnm29IPtQo0mAL306";
+  mashiro_option.v_appId = "gcyRrrTODColvahbgrSvApl5-MdYXbMMI";
+  mashiro_option.v_appKey = "5W43w4sQ6cVbCqfCTRN0h6Ta";
   mashiro_option.mathjax = "0";
   mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
   mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
@@ -627,6 +627,21 @@ namespace TianciAttribute
                               
           </section>
           
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        avatar: 'monsterid',
+        appId: "gcyRrrTODColvahbgrSvApl5-MdYXbMMI",
+        appKey: "5W43w4sQ6cVbCqfCTRN0h6Ta",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
             <section class="author-profile">
               <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
                 <!-- 页面底部头像统一，post页面可以不写 -->
@@ -726,7 +741,7 @@ namespace TianciAttribute
 <!-- Leancloud 操作库，为了防止和说说页面冲突，放到post.ejs保证生成不影响page页面-->
 <!-- <script type="text/javascript" src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
 <!-- <script type="text/javascript" src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
-<!-- <script type="text/javascript" src="/js/NewValine.js"></script> -->
+<script type="text/javascript" src="/js/NewValine.js"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/valine/1.4.18/Valine.min.js"></script> -->
 
 <!-- 偷来的Leancloud操作库 -->
