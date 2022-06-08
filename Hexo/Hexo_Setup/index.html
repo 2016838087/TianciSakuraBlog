@@ -24,7 +24,7 @@
 <meta property="og:description" content="Hexo基本操作">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/29.jpg">
-<meta property="og:updated_time" content="2022-06-07T02:06:18.402Z">
+<meta property="og:updated_time" content="2022-06-08T01:08:56.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo安装与部署">
 <meta name="twitter:description" content="Hexo基本操作">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:317
+          本章字数:242
             <span class="bull">
               ·</span>
-            总字数:15.5k
+            总字数:15.6k
               <!-- <span>
           
         </span> -->
@@ -400,21 +400,15 @@
             <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
             
                 <div class="entry-content">
-                  <h2 id="打开Git-Bash，输入以下代码安装hexo"><a href="#打开Git-Bash，输入以下代码安装hexo" class="headerlink" title="打开Git Bash，输入以下代码安装hexo"></a>打开Git Bash，输入以下代码安装hexo</h2><a id="more"></a>
-<pre><code>$ npm install -g hexo
+                  <a id="more"></a>
+<h2 id="首先安装node-js环境"><a href="#首先安装node-js环境" class="headerlink" title="首先安装node.js环境"></a>首先安装node.js环境</h2><h2 id="打开Git-Bash，输入以下代码安装hexo"><a href="#打开Git-Bash，输入以下代码安装hexo" class="headerlink" title="打开Git Bash，输入以下代码安装hexo"></a>打开Git Bash，输入以下代码安装hexo</h2><pre><code>$ npm install -g hexo
 </code></pre><h3 id="安装完成在任意盘创建文件夹，例如D-hexo"><a href="#安装完成在任意盘创建文件夹，例如D-hexo" class="headerlink" title="安装完成在任意盘创建文件夹，例如D:\hexo"></a>安装完成在任意盘创建文件夹，例如D:\hexo</h3><h3 id="再右击打开Git-Bash，输入"><a href="#再右击打开Git-Bash，输入" class="headerlink" title="再右击打开Git Bash，输入"></a>再右击打开Git Bash，输入</h3><pre><code>$ cd D:\hexo
 $ hexo init
-</code></pre><h3 id="hexo会自动下载一些文件到这个目录"><a href="#hexo会自动下载一些文件到这个目录" class="headerlink" title="hexo会自动下载一些文件到这个目录"></a>hexo会自动下载一些文件到这个目录</h3><h3 id="然后继续输入"><a href="#然后继续输入" class="headerlink" title="然后继续输入"></a>然后继续输入</h3><pre><code>$ npm install hexo-deployer-git
-</code></pre><a href="file.png" data-fancybox="images" data-caption="文件目录"><img src="file.png"></a>
-<h3 id="这个是因为等下提交代码需要此插件"><a href="#这个是因为等下提交代码需要此插件" class="headerlink" title="这个是因为等下提交代码需要此插件"></a>这个是因为等下提交代码需要此插件</h3><h3 id="现在生成网站并预览"><a href="#现在生成网站并预览" class="headerlink" title="现在生成网站并预览"></a>现在生成网站并预览</h3><pre><code>$ hexo g
+</code></pre><h3 id="hexo会自动生成环境到这个目录"><a href="#hexo会自动生成环境到这个目录" class="headerlink" title="hexo会自动生成环境到这个目录"></a>hexo会自动生成环境到这个目录</h3><h3 id="然后继续输入"><a href="#然后继续输入" class="headerlink" title="然后继续输入"></a>然后继续输入</h3><pre><code>$ hexo g
+</code></pre><h3 id="会生成一个public文件夹，这个文件夹就是博客生成的静态文件"><a href="#会生成一个public文件夹，这个文件夹就是博客生成的静态文件" class="headerlink" title="会生成一个public文件夹，这个文件夹就是博客生成的静态文件"></a>会生成一个public文件夹，这个文件夹就是博客生成的静态文件</h3><h3 id="可直接部署到GitPage或者服务器"><a href="#可直接部署到GitPage或者服务器" class="headerlink" title="可直接部署到GitPage或者服务器"></a>可直接部署到GitPage或者服务器</h3><pre><code>$ hexo s
+</code></pre><h3 id="进入浏览器输入localhost-4000即可访问你的网站，Ctrl-C停止预览"><a href="#进入浏览器输入localhost-4000即可访问你的网站，Ctrl-C停止预览" class="headerlink" title="进入浏览器输入localhost:4000即可访问你的网站，Ctrl+C停止预览"></a>进入浏览器输入<a href="localhost:4000" title="localhost:4000" target="_blank" rel="noopener">localhost:4000</a>即可访问你的网站，Ctrl+C停止预览</h3><h3 id="在Hexo官网下载一个主题然后放进hexo文件夹下面的theme文件夹里面"><a href="#在Hexo官网下载一个主题然后放进hexo文件夹下面的theme文件夹里面" class="headerlink" title="在Hexo官网下载一个主题然后放进hexo文件夹下面的theme文件夹里面"></a>在Hexo官网下载一个主题然后放进hexo文件夹下面的theme文件夹里面</h3><h3 id="修改hexo文件夹中根目录-config-yml文件里面的theme属性"><a href="#修改hexo文件夹中根目录-config-yml文件里面的theme属性" class="headerlink" title="修改hexo文件夹中根目录_config.yml文件里面的theme属性"></a>修改hexo文件夹中根目录_config.yml文件里面的theme属性</h3><h3 id="将原来的theme属性改为你所下载主题的文件夹名，打开Git-Bash重新生成并预览"><a href="#将原来的theme属性改为你所下载主题的文件夹名，打开Git-Bash重新生成并预览" class="headerlink" title="将原来的theme属性改为你所下载主题的文件夹名，打开Git Bash重新生成并预览"></a>将原来的theme属性改为你所下载主题的文件夹名，打开Git Bash重新生成并预览</h3><pre><code>$ hexo g
 $ hexo s
-</code></pre><h3 id="进入浏览器输入localhost-4000访问你的网站吧，Ctrl-C停止预览"><a href="#进入浏览器输入localhost-4000访问你的网站吧，Ctrl-C停止预览" class="headerlink" title="进入浏览器输入localhost:4000访问你的网站吧，Ctrl+C停止预览"></a>进入浏览器输入<a href="localhost:4000" title="localhost:4000" target="_blank" rel="noopener">localhost:4000</a>访问你的网站吧，Ctrl+C停止预览</h3><h3 id="在网上下一个主题然后放进hexo文件夹下面的theme文件夹里面"><a href="#在网上下一个主题然后放进hexo文件夹下面的theme文件夹里面" class="headerlink" title="在网上下一个主题然后放进hexo文件夹下面的theme文件夹里面"></a>在网上下一个主题然后放进hexo文件夹下面的theme文件夹里面</h3><h3 id="修改hexo文件夹中-config-yml文件里面的theme属性"><a href="#修改hexo文件夹中-config-yml文件里面的theme属性" class="headerlink" title="修改hexo文件夹中_config.yml文件里面的theme属性"></a>修改hexo文件夹中_config.yml文件里面的theme属性</h3><h3 id="将原来的landscape改为你所下载主题的文件夹名，打开Git-Bash重新生成并预览"><a href="#将原来的landscape改为你所下载主题的文件夹名，打开Git-Bash重新生成并预览" class="headerlink" title="将原来的landscape改为你所下载主题的文件夹名，打开Git Bash重新生成并预览"></a>将原来的landscape改为你所下载主题的文件夹名，打开Git Bash重新生成并预览</h3><pre><code>$ hexo g
-$ hexo s
-</code></pre><h3 id="你会发现页面已经适应了你的主题"><a href="#你会发现页面已经适应了你的主题" class="headerlink" title="你会发现页面已经适应了你的主题"></a>你会发现页面已经适应了你的主题</h3><h3 id="之后打开hexo目录下的-config-yml最后一段"><a href="#之后打开hexo目录下的-config-yml最后一段" class="headerlink" title="之后打开hexo目录下的_config.yml最后一段"></a>之后打开hexo目录下的_config.yml最后一段</h3><a href="git.png" data-fancybox="images" data-caption="_config.yml"><img src="git.png"></a>
-<h3 id="绑定你的GitHub项目地址"><a href="#绑定你的GitHub项目地址" class="headerlink" title="绑定你的GitHub项目地址"></a>绑定你的GitHub项目地址</h3><pre><code>$ hexo clean
-$ hexo g
-$ hexo d
-</code></pre><h3 id="以上代码分别是清除public文件夹，重新生成，和提交代码到GitHub"><a href="#以上代码分别是清除public文件夹，重新生成，和提交代码到GitHub" class="headerlink" title="以上代码分别是清除public文件夹，重新生成，和提交代码到GitHub"></a>以上代码分别是清除public文件夹，重新生成，和提交代码到GitHub</h3><h3 id="然后上GitHub你会发现存储库里面的文件都是public文件夹下面的"><a href="#然后上GitHub你会发现存储库里面的文件都是public文件夹下面的" class="headerlink" title="然后上GitHub你会发现存储库里面的文件都是public文件夹下面的"></a>然后上GitHub你会发现存储库里面的文件都是public文件夹下面的</h3><h3 id="每次提交代码都只会提交此文件夹下的代码"><a href="#每次提交代码都只会提交此文件夹下的代码" class="headerlink" title="每次提交代码都只会提交此文件夹下的代码"></a>每次提交代码都只会提交此文件夹下的代码</h3><h3 id="本期hexo安装与部署就到这里，下期见"><a href="#本期hexo安装与部署就到这里，下期见" class="headerlink" title="本期hexo安装与部署就到这里，下期见"></a>本期hexo安装与部署就到这里，下期见</h3>
+</code></pre><h3 id="你会发现页面已经适应了你的主题"><a href="#你会发现页面已经适应了你的主题" class="headerlink" title="你会发现页面已经适应了你的主题"></a>你会发现页面已经适应了你的主题</h3><h3 id="接下来就开启了你的魔改主题之路"><a href="#接下来就开启了你的魔改主题之路" class="headerlink" title="接下来就开启了你的魔改主题之路"></a>接下来就开启了你的魔改主题之路</h3>
                 </div>
                 <!-- 赞赏 -->
                 <div class="single-reward">
@@ -475,7 +469,7 @@ $ hexo d
                         
                           <div class="post-nepre half next">
                             
-                                  <a href="/Other/UpdateInfo/" rel="next">
+                                  <a href="/Other/YouSay/" rel="next">
                                     <div class="background">
                                       <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
                                         data-src="https://cdn.lovetianci.cn/themes/images/background/23.jpg"
