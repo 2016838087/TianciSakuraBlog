@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">C#获取指定文件夹所有文件 | TianciBlog</title>
+  <title itemprop="name">C#读取文本文件 | TianciBlog</title>
   
     <link rel="shortcut icon" href="https://cdn.lovetianci.cn/themes/images/favicon.ico">
   
@@ -15,20 +15,20 @@
   
   <meta name="keywords" content="Tianciの小窝,Tianci个人博客,TianciBlog">
   
-  <meta name="description" content="C#文件操作">
+  <meta name="description" content="读取txt的一些方法">
 <meta name="keywords" content="技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C#获取指定文件夹所有文件">
-<meta property="og:url" content="/DotNET/CSharp_File/index.html">
+<meta property="og:title" content="C#读取文本文件">
+<meta property="og:url" content="/DotNET/CSharp_Read/index.html">
 <meta property="og:site_name" content="TianciBlog">
-<meta property="og:description" content="C#文件操作">
+<meta property="og:description" content="读取txt的一些方法">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
+<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/7.jpg">
 <meta property="og:updated_time" content="2022-07-20T14:16:38.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C#获取指定文件夹所有文件">
-<meta name="twitter:description" content="C#文件操作">
-<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
+<meta name="twitter:title" content="C#读取文本文件">
+<meta name="twitter:description" content="读取txt的一些方法">
+<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/7.jpg">
   
   <!-- end -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
@@ -347,12 +347,12 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/20.jpg);"
-      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/7.jpg);"
+      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/7.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-        C#获取指定文件夹所有文件
+        C#读取文本文件
       </h1>
       <p class="entry-census">
         <span>
@@ -374,13 +374,13 @@
         </span>
         <span class="bull">
           ·</span>
-        2020-12-30
+        2020-7-19
           <span class="bull">
             ·</span>
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:416
+          本章字数:268
             <span class="bull">
               ·</span>
             总字数:16.6k
@@ -400,87 +400,74 @@
             <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
             
                 <div class="entry-content">
-                  <h3 id="2020快过完了，赶紧水一篇博客"><a href="#2020快过完了，赶紧水一篇博客" class="headerlink" title="2020快过完了，赶紧水一篇博客"></a>2020快过完了，赶紧水一篇博客</h3><a id="more"></a>
-<pre><code class="csharp">//获取桌面路径
-string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-string path = string.Format(@&quot;{0}\{1}&quot;, desktop, &quot;加密前&quot;);
-DirectoryInfo folder = new DirectoryInfo(path);
-//从路径下循环获取文件
-foreach(FileInfo file in folder.GetFiles())
-{
-  //打印文件路径到控制台
-  Console.WriteLine(file.FullName);
-}
-Console.ReadKey();
+                  <a id="more"></a>
+<h3 id="静态方法读取所有内容"><a href="#静态方法读取所有内容" class="headerlink" title="静态方法读取所有内容"></a>静态方法读取所有内容</h3><pre><code class="csharp">File.ReadAllText(@&quot;F:\bintianci\MyCode\1.txt&quot;, System.Text.Encoding.UTF8)
 </code></pre>
-<h3 id="控制台打印信息"><a href="#控制台打印信息" class="headerlink" title="控制台打印信息"></a>控制台打印信息</h3><a href="console.png" data-fancybox="images" data-caption="控制台打印信息"><img src="console.png"></a>
-<h3 id="很明显，这个打印的顺序就不对"><a href="#很明显，这个打印的顺序就不对" class="headerlink" title="很明显，这个打印的顺序就不对"></a>很明显，这个打印的顺序就不对</h3><h3 id="可以稍加修改一下，写入到txt"><a href="#可以稍加修改一下，写入到txt" class="headerlink" title="可以稍加修改一下，写入到txt"></a>可以稍加修改一下，写入到txt</h3><pre><code class="csharp">string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-string path = string.Format(@&quot;{0}\{1}&quot;, desktop, &quot;加密前&quot;);
-DirectoryInfo folder = new DirectoryInfo(path);
-StreamWriter txt;
-if (File.Exists(desktop + &quot;\\&quot; + &quot;路径.txt&quot;))
-{
-  //把原来的删掉重新创建一个
-  File.Delete(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-  txt = File.CreateText(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-}
-else
-{
-  //创建-&gt;路径.txt
-  txt = File.CreateText(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-}
-List&lt;string&gt; fileNameList = new List&lt;string&gt;();
-foreach (FileInfo file in folder.GetFiles())
-{
-  //写入到list里面存储
-  fileNameList.Add(file.FullName);
-}
-//创建一个数组
-string[] list=new string[fileNameList.Count];
-//把list值加到数组
-for(int i = 0; i &lt; fileNameList.Count; i++)
-{
-  list[i] = fileNameList[i];
-}
-//调用排序方法
-Array.Sort(list, new FileNameSort());
-foreach(var fileUrl in list)
-{
-  //写入txt
-  txt.WriteLine(fileUrl);
-  Console.WriteLine(fileUrl);
-}
-//释放资源
-txt.Close();
-txt.Dispose();
-Console.ReadKey();
-</code></pre>
-<h3 id="这里说一下为啥要创建list和数组"><a href="#这里说一下为啥要创建list和数组" class="headerlink" title="这里说一下为啥要创建list和数组"></a>这里说一下为啥要创建list和数组</h3><h3 id="因为看上图顺序是乱的，所以就排序了一下"><a href="#因为看上图顺序是乱的，所以就排序了一下" class="headerlink" title="因为看上图顺序是乱的，所以就排序了一下"></a>因为看上图顺序是乱的，所以就排序了一下</h3><a href="console2.png" data-fancybox="images" data-caption="控制台打印信息"><img src="console2.png"></a>
-<h3 id="这一次就没问题了"><a href="#这一次就没问题了" class="headerlink" title="这一次就没问题了"></a>这一次就没问题了</h3><a href="txt.png" data-fancybox="images" data-caption="文本写入"><img src="txt.png"></a>
-<h3 id="包括文本写入也正常"><a href="#包括文本写入也正常" class="headerlink" title="包括文本写入也正常"></a>包括文本写入也正常</h3><h3 id="排序的方法"><a href="#排序的方法" class="headerlink" title="排序的方法"></a>排序的方法</h3><pre><code class="csharp">public class FileNameSort : IComparer
-{
-  //调用windos 的 DLL
-  [System.Runtime.InteropServices.DllImport(&quot;Shlwapi.dll&quot;, CharSet = CharSet.Unicode)]
-  private static extern int StrCmpLogicalW(string param1, string param2);
+<h3 id="静态方法读取所有行"><a href="#静态方法读取所有行" class="headerlink" title="静态方法读取所有行"></a>静态方法读取所有行</h3><pre><code class="csharp">string[] allLines = File.ReadAllLines(@&quot;F:\bintianci\MyCode\1.txt&quot;, System.Text.Encoding.UTF8);
 
-  //前后文件名进行比较。
-  public int Compare(object name1, object name2)
-  {
-    if (null == name1 &amp;&amp; null == name2)
-    {
-      return 0;
-    }
-    if (null == name1)
-    {
-      return -1;
-    }
-    if (null == name2)
-    {
-      return 1;
-    }
-    return StrCmpLogicalW(name1.ToString(), name2.ToString());
-  }
+//遍历输出
+foreach (string line in allLines)
+{
+    Console.WriteLine(line);
 }
+</code></pre>
+<h3 id="一次读一行"><a href="#一次读一行" class="headerlink" title="一次读一行"></a>一次读一行</h3><pre><code class="csharp">//文件路径
+string filePath = @&quot;F:\bintianci\MyCode\1.txt&quot;;
+
+//文本读取器
+using (TextReader reader = new StreamReader(filePath, System.Text.Encoding.UTF8))
+{
+    //一次读一行
+    string? textLine = reader.ReadLine();
+
+    ////遍历读取
+    while (textLine != null)
+    {
+       //输出读取的内容
+       Console.WriteLine(textLine);
+       //停一下
+       System.Threading.Thread.Sleep(500);
+       //继续读
+       textLine = reader.ReadLine();
+    }
+}
+Console.ReadKey();
+</code></pre>
+<h3 id="一次读一个字符"><a href="#一次读一个字符" class="headerlink" title="一次读一个字符"></a>一次读一个字符</h3><pre><code class="csharp">//文件路径
+string filePath = @&quot;F:\bintianci\MyCode\1.txt&quot;;
+
+//文本读取器
+using (TextReader reader = new StreamReader(filePath, System.Text.Encoding.UTF8))
+{
+    //一次读一个字符
+    int textChar = reader.Read();
+
+    ////遍历读取
+    while (textChar != -1)
+    {
+       //输出读取的内容
+       Console.Write((char)textChar);
+       //停一下
+       System.Threading.Thread.Sleep(100);
+       //继续读
+       textChar = reader.Read();
+    }
+}
+Console.ReadKey();
+</code></pre>
+<h3 id="一次性读完"><a href="#一次性读完" class="headerlink" title="一次性读完"></a>一次性读完</h3><pre><code class="csharp">//文件路径
+string filePath = @&quot;F:\bintianci\MyCode\1.txt&quot;;
+
+//文本读取器
+using (TextReader reader = new StreamReader(filePath, System.Text.Encoding.UTF8))
+{
+    //一次性读完
+    string textContent = reader.ReadToEnd();
+
+    //输出读取的内容
+    Console.WriteLine(textContent);
+}
+Console.ReadKey();
 </code></pre>
 
                 </div>
@@ -522,17 +509,17 @@ Console.ReadKey();
               
                 <div class="post-nepre half previous">
                   
-                        <a href="/DotNET/WPF_Learning_1/" rel="prev">
+                        <a href="/Other/GitBlit_Windows10/" rel="prev">
                           <div class="background">
-                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/21.jpg"
+                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/19.jpg"
                               style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/21.jpg">
+                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/19.jpg">
                           </div>
                           <span class="label">
                             Previous Post</span>
                           <div class="info">
                             <h3>
-                              WPF知识点
+                              Windows服务器搭建Git管理平台
                             </h3>
                             <hr>
                           </div>
@@ -543,18 +530,18 @@ Console.ReadKey();
                         
                           <div class="post-nepre half next">
                             
-                                  <a href="/Other/GitBlit_Windows10/" rel="next">
+                                  <a href="/DotNET/DotNETCore_WebAPI_EFCore_MySQL/" rel="next">
                                     <div class="background">
                                       <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
-                                        data-src="https://cdn.lovetianci.cn/themes/images/background/19.jpg"
+                                        data-src="https://cdn.lovetianci.cn/themes/images/background/15.jpg"
                                         style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/19.jpg">
+                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/15.jpg">
                                     </div>
                                     <span class="label">
                                       Next Post</span>
                                     <div class="info">
                                       <h3>
-                                        Windows服务器搭建Git管理平台
+                                        .NET Core WebAPI使用EFCore连接MySQL
                                       </h3>
                                       <hr>
                                     </div>

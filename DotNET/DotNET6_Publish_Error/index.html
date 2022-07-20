@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">C#获取指定文件夹所有文件 | TianciBlog</title>
+  <title itemprop="name">DotNET6发布Publish失败 | TianciBlog</title>
   
     <link rel="shortcut icon" href="https://cdn.lovetianci.cn/themes/images/favicon.ico">
   
@@ -15,20 +15,20 @@
   
   <meta name="keywords" content="Tianciの小窝,Tianci个人博客,TianciBlog">
   
-  <meta name="description" content="C#文件操作">
+  <meta name="description" content="DotNET6发布相关">
 <meta name="keywords" content="技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C#获取指定文件夹所有文件">
-<meta property="og:url" content="/DotNET/CSharp_File/index.html">
+<meta property="og:title" content="DotNET6发布Publish失败">
+<meta property="og:url" content="/DotNET/DotNET6_Publish_Error/index.html">
 <meta property="og:site_name" content="TianciBlog">
-<meta property="og:description" content="C#文件操作">
+<meta property="og:description" content="DotNET6发布相关">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
-<meta property="og:updated_time" content="2022-07-20T14:16:38.957Z">
+<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/12.jpg">
+<meta property="og:updated_time" content="2022-07-20T14:16:38.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C#获取指定文件夹所有文件">
-<meta name="twitter:description" content="C#文件操作">
-<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
+<meta name="twitter:title" content="DotNET6发布Publish失败">
+<meta name="twitter:description" content="DotNET6发布相关">
+<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/12.jpg">
   
   <!-- end -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
@@ -347,12 +347,12 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/20.jpg);"
-      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/20.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/12.jpg);"
+      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/12.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-        C#获取指定文件夹所有文件
+        DotNET6发布Publish失败
       </h1>
       <p class="entry-census">
         <span>
@@ -374,13 +374,13 @@
         </span>
         <span class="bull">
           ·</span>
-        2020-12-30
+        2022-7-19
           <span class="bull">
             ·</span>
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:416
+          本章字数:209
             <span class="bull">
               ·</span>
             总字数:16.6k
@@ -400,88 +400,24 @@
             <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
             
                 <div class="entry-content">
-                  <h3 id="2020快过完了，赶紧水一篇博客"><a href="#2020快过完了，赶紧水一篇博客" class="headerlink" title="2020快过完了，赶紧水一篇博客"></a>2020快过完了，赶紧水一篇博客</h3><a id="more"></a>
-<pre><code class="csharp">//获取桌面路径
-string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-string path = string.Format(@&quot;{0}\{1}&quot;, desktop, &quot;加密前&quot;);
-DirectoryInfo folder = new DirectoryInfo(path);
-//从路径下循环获取文件
-foreach(FileInfo file in folder.GetFiles())
-{
-  //打印文件路径到控制台
-  Console.WriteLine(file.FullName);
-}
-Console.ReadKey();
+                  <a id="more"></a>
+<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><pre><code class="Powershell">C:\Program Files\dotnet\sdk\6.0.100\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.ConflictResolution.targets(112,5): error NETSDK1152: 找到了多个具有相同相对路径的发布输出文件: 
 </code></pre>
-<h3 id="控制台打印信息"><a href="#控制台打印信息" class="headerlink" title="控制台打印信息"></a>控制台打印信息</h3><a href="console.png" data-fancybox="images" data-caption="控制台打印信息"><img src="console.png"></a>
-<h3 id="很明显，这个打印的顺序就不对"><a href="#很明显，这个打印的顺序就不对" class="headerlink" title="很明显，这个打印的顺序就不对"></a>很明显，这个打印的顺序就不对</h3><h3 id="可以稍加修改一下，写入到txt"><a href="#可以稍加修改一下，写入到txt" class="headerlink" title="可以稍加修改一下，写入到txt"></a>可以稍加修改一下，写入到txt</h3><pre><code class="csharp">string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-string path = string.Format(@&quot;{0}\{1}&quot;, desktop, &quot;加密前&quot;);
-DirectoryInfo folder = new DirectoryInfo(path);
-StreamWriter txt;
-if (File.Exists(desktop + &quot;\\&quot; + &quot;路径.txt&quot;))
-{
-  //把原来的删掉重新创建一个
-  File.Delete(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-  txt = File.CreateText(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-}
-else
-{
-  //创建-&gt;路径.txt
-  txt = File.CreateText(desktop + &quot;\\&quot; + &quot;路径.txt&quot;);
-}
-List&lt;string&gt; fileNameList = new List&lt;string&gt;();
-foreach (FileInfo file in folder.GetFiles())
-{
-  //写入到list里面存储
-  fileNameList.Add(file.FullName);
-}
-//创建一个数组
-string[] list=new string[fileNameList.Count];
-//把list值加到数组
-for(int i = 0; i &lt; fileNameList.Count; i++)
-{
-  list[i] = fileNameList[i];
-}
-//调用排序方法
-Array.Sort(list, new FileNameSort());
-foreach(var fileUrl in list)
-{
-  //写入txt
-  txt.WriteLine(fileUrl);
-  Console.WriteLine(fileUrl);
-}
-//释放资源
-txt.Close();
-txt.Dispose();
-Console.ReadKey();
+<h3 id="官方文档解决属性ErrorOnDuplicatePublishOutputFiles"><a href="#官方文档解决属性ErrorOnDuplicatePublishOutputFiles" class="headerlink" title="官方文档解决属性ErrorOnDuplicatePublishOutputFiles"></a>官方文档解决属性<a href="https://docs.microsoft.com/zh-cn/dotnet/core/project-sdk/msbuild-props#erroronduplicatepublishoutputfiles" title="ErrorOnDuplicatePublishOutputFiles" target="_blank" rel="noopener">ErrorOnDuplicatePublishOutputFiles</a></h3><h3 id="ErrorOnDuplicatePublishOutputFiles-属性与当-MSBuild-在发布输出中检测到重复文件时-SDK-是否生成错误-NETSDK1148-有关，但无法确定要删除的文件。-如果不希望生成错误，请将-ErrorOnDuplicatePublishOutputFiles-属性设置为-false"><a href="#ErrorOnDuplicatePublishOutputFiles-属性与当-MSBuild-在发布输出中检测到重复文件时-SDK-是否生成错误-NETSDK1148-有关，但无法确定要删除的文件。-如果不希望生成错误，请将-ErrorOnDuplicatePublishOutputFiles-属性设置为-false" class="headerlink" title="ErrorOnDuplicatePublishOutputFiles 属性与当 MSBuild 在发布输出中检测到重复文件时 SDK 是否生成错误 NETSDK1148 有关，但无法确定要删除的文件。 如果不希望生成错误，请将 ErrorOnDuplicatePublishOutputFiles 属性设置为 false"></a>ErrorOnDuplicatePublishOutputFiles 属性与当 MSBuild 在发布输出中检测到重复文件时 SDK 是否生成错误 NETSDK1148 有关，但无法确定要删除的文件。 如果不希望生成错误，请将 ErrorOnDuplicatePublishOutputFiles 属性设置为 false</h3><pre><code class="XML">&lt;PropertyGroup&gt;
+  &lt;ErrorOnDuplicatePublishOutputFiles&gt;false&lt;/ErrorOnDuplicatePublishOutputFiles&gt;
+&lt;/PropertyGroup&gt;
 </code></pre>
-<h3 id="这里说一下为啥要创建list和数组"><a href="#这里说一下为啥要创建list和数组" class="headerlink" title="这里说一下为啥要创建list和数组"></a>这里说一下为啥要创建list和数组</h3><h3 id="因为看上图顺序是乱的，所以就排序了一下"><a href="#因为看上图顺序是乱的，所以就排序了一下" class="headerlink" title="因为看上图顺序是乱的，所以就排序了一下"></a>因为看上图顺序是乱的，所以就排序了一下</h3><a href="console2.png" data-fancybox="images" data-caption="控制台打印信息"><img src="console2.png"></a>
-<h3 id="这一次就没问题了"><a href="#这一次就没问题了" class="headerlink" title="这一次就没问题了"></a>这一次就没问题了</h3><a href="txt.png" data-fancybox="images" data-caption="文本写入"><img src="txt.png"></a>
-<h3 id="包括文本写入也正常"><a href="#包括文本写入也正常" class="headerlink" title="包括文本写入也正常"></a>包括文本写入也正常</h3><h3 id="排序的方法"><a href="#排序的方法" class="headerlink" title="排序的方法"></a>排序的方法</h3><pre><code class="csharp">public class FileNameSort : IComparer
-{
-  //调用windos 的 DLL
-  [System.Runtime.InteropServices.DllImport(&quot;Shlwapi.dll&quot;, CharSet = CharSet.Unicode)]
-  private static extern int StrCmpLogicalW(string param1, string param2);
-
-  //前后文件名进行比较。
-  public int Compare(object name1, object name2)
-  {
-    if (null == name1 &amp;&amp; null == name2)
-    {
-      return 0;
-    }
-    if (null == name1)
-    {
-      return -1;
-    }
-    if (null == name2)
-    {
-      return 1;
-    }
-    return StrCmpLogicalW(name1.ToString(), name2.ToString());
-  }
-}
+<h3 id="扩展知识：如果项目包含第三方Nuget包可以查看DotNET-Nuget"><a href="#扩展知识：如果项目包含第三方Nuget包可以查看DotNET-Nuget" class="headerlink" title="扩展知识：如果项目包含第三方Nuget包可以查看DotNET_Nuget"></a>扩展知识：如果项目包含第三方Nuget包可以查看<a href="https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-nuget-add-source" title="DotNET_Nuget" target="_blank" rel="noopener">DotNET_Nuget</a></h3><ul>
+<li>将 myNuget 添加为源：<pre><code class="Powershell">dotnet nuget add source 源链接 -n myNuget
 </code></pre>
+</li>
+<li>将 c:\packages 添加为本地源：<pre><code class="Powershell">dotnet nuget add source c:\packages
+</code></pre>
+</li>
+<li>添加需要身份验证的源：<pre><code class="Powershell">dotnet nuget add source 源链接 -n 自定义源名称 -u 账号 -p 密码 --store-password-in-clear-text
+</code></pre>
+</li>
+</ul>
 
                 </div>
                 <!-- 赞赏 -->
@@ -519,42 +455,22 @@ Console.ReadKey();
           <div class="toc" style="background: none;"></div>
           <section class="post-squares nextprev">
             
-              
-                <div class="post-nepre half previous">
-                  
-                        <a href="/DotNET/WPF_Learning_1/" rel="prev">
-                          <div class="background">
-                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/21.jpg"
-                              style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/21.jpg">
-                          </div>
-                          <span class="label">
-                            Previous Post</span>
-                          <div class="info">
-                            <h3>
-                              WPF知识点
-                            </h3>
-                            <hr>
-                          </div>
-                        </a>
-                    </div>
-                    
                       
                         
-                          <div class="post-nepre half next">
-                            
-                                  <a href="/Other/GitBlit_Windows10/" rel="next">
+                              <div class="post-nepre full next">
+                                
+                                  <a href="/DotNET/DotNET6_Jenkins_Gitblit/" rel="next">
                                     <div class="background">
                                       <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
-                                        data-src="https://cdn.lovetianci.cn/themes/images/background/19.jpg"
+                                        data-src="https://cdn.lovetianci.cn/themes/images/background/4.jpg"
                                         style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/19.jpg">
+                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/4.jpg">
                                     </div>
                                     <span class="label">
                                       Next Post</span>
                                     <div class="info">
                                       <h3>
-                                        Windows服务器搭建Git管理平台
+                                        DotNET6集成Jenkins+GitBlit部署到IIS
                                       </h3>
                                       <hr>
                                     </div>
