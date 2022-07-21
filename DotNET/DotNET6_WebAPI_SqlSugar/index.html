@@ -24,7 +24,7 @@
 <meta property="og:description" content="SqlSugar连接MySQL和SQL Server数据库">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/18.jpg">
-<meta property="og:updated_time" content="2022-07-20T14:16:38.988Z">
+<meta property="og:updated_time" content="2022-07-21T14:29:47.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DotNET6使用SqlSugar连接数据库">
 <meta name="twitter:description" content="SqlSugar连接MySQL和SQL Server数据库">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:399
+          本章字数:372
             <span class="bull">
               ·</span>
-            总字数:16.6k
+            总字数:16.5k
               <!-- <span>
           
         </span> -->
@@ -429,15 +429,14 @@ public class SqlSugarContext
 }
 </code></pre>
 <h3 id="连接字符串配置"><a href="#连接字符串配置" class="headerlink" title="连接字符串配置"></a>连接字符串配置</h3><pre><code class="json">&quot;ConnectionStrings&quot;: {
-    &quot;MySQLConnection&quot;: &quot;server=127.0.0.1;uid=用户名;pwd=密码;port=3306;database=数据库名称;SslMode=None&quot;,
     // 本地MySQL
-    &quot;WorkMySQLConnection&quot;: &quot;server=127.0.0.1;uid=用户名;pwd=密码;port=3307;database=数据库名称;SslMode=None&quot;,
+    &quot;MySQLConnection&quot;: &quot;server=127.0.0.1;uid=用户名;pwd=密码;port=3306;database=数据库名称;SslMode=None&quot;,
     // 本地SQL Server
-    &quot;WorkSQLServerConnection&quot;: &quot;Data Source=.;Initial Catalog=数据库名称;uid=用户名;pwd=密码;Pooling=true;&quot;
+    &quot;SQLServerConnection&quot;: &quot;Data Source=.;Initial Catalog=数据库名称;uid=用户名;pwd=密码;Pooling=true;&quot;
   }
 </code></pre>
 <h3 id="Program赋值连接字符串"><a href="#Program赋值连接字符串" class="headerlink" title="Program赋值连接字符串"></a>Program赋值连接字符串</h3><pre><code class="csharp">// 连接字符串
-SqlSugarContext.ConnectionString = builder.Configuration.GetConnectionString(&quot;WorkSQLServerConnection&quot;);
+SqlSugarContext.ConnectionString = builder.Configuration.GetConnectionString(&quot;SQLServerConnection&quot;);
 </code></pre>
 <h3 id="这样就可以直接使用了"><a href="#这样就可以直接使用了" class="headerlink" title="这样就可以直接使用了"></a>这样就可以直接使用了</h3><pre><code class="csharp">using (var db = SqlSugarContext.GetInstance())
 {

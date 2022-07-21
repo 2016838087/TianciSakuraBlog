@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">C#扩展方法 | TianciBlog</title>
+  <title itemprop="name">C# Attribute | TianciBlog</title>
   
     <link rel="shortcut icon" href="https://cdn.lovetianci.cn/themes/images/favicon.ico">
   
@@ -15,20 +15,20 @@
   
   <meta name="keywords" content="Tianciの小窝,Tianci个人博客,TianciBlog">
   
-  <meta name="description" content="扩展方法的创建与使用">
+  <meta name="description" content="特性基本用法">
 <meta name="keywords" content="技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C#扩展方法">
-<meta property="og:url" content="/DotNET/CSharp_Extension/index.html">
+<meta property="og:title" content="C# Attribute">
+<meta property="og:url" content="/DotNET/CSharp_Attribute/index.html">
 <meta property="og:site_name" content="TianciBlog">
-<meta property="og:description" content="扩展方法的创建与使用">
+<meta property="og:description" content="特性基本用法">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/8.jpg">
-<meta property="og:updated_time" content="2022-07-20T14:16:38.957Z">
+<meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/11.jpg">
+<meta property="og:updated_time" content="2022-07-21T14:29:47.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C#扩展方法">
-<meta name="twitter:description" content="扩展方法的创建与使用">
-<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/8.jpg">
+<meta name="twitter:title" content="C# Attribute">
+<meta name="twitter:description" content="特性基本用法">
+<meta name="twitter:image" content="https://cdn.lovetianci.cn/themes/images/background/11.jpg">
   
   <!-- end -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
@@ -347,12 +347,12 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/8.jpg);"
-      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/8.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.lovetianci.cn/themes/images/background/11.jpg);"
+      src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/11.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-        C#扩展方法
+        C# Attribute
       </h1>
       <p class="entry-census">
         <span>
@@ -374,16 +374,16 @@
         </span>
         <span class="bull">
           ·</span>
-        2020-2-10
+        2020-4-3
           <span class="bull">
             ·</span>
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:359
+          本章字数:420
             <span class="bull">
               ·</span>
-            总字数:16.6k
+            总字数:16.5k
               <!-- <span>
           
         </span> -->
@@ -400,26 +400,126 @@
             <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
             
                 <div class="entry-content">
-                  <h2 id="C-扩展方法"><a href="#C-扩展方法" class="headerlink" title="C#扩展方法"></a>C#扩展方法</h2><a id="more"></a>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="1-声明扩展方法的类必须为static类；"><a href="#1-声明扩展方法的类必须为static类；" class="headerlink" title="1. 声明扩展方法的类必须为static类；"></a>1. 声明扩展方法的类必须为static类；</h3><h3 id="2-扩展方法本身也必须声明为static；"><a href="#2-扩展方法本身也必须声明为static；" class="headerlink" title="2. 扩展方法本身也必须声明为static；"></a>2. 扩展方法本身也必须声明为static；</h3><h3 id="3-扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。"><a href="#3-扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。" class="headerlink" title="3. 扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。"></a>3. 扩展方法必须包含关键字this作为第一个参数类型，并在后面跟着它所扩展的类型的名称。</h3><h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><h3 id="先创建一个静态类叫StringExtension"><a href="#先创建一个静态类叫StringExtension" class="headerlink" title="先创建一个静态类叫StringExtension"></a>先创建一个静态类叫StringExtension</h3><h3 id="然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1"><a href="#然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1" class="headerlink" title="然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1"></a>然后简单写一个静态方法，我这里写的是布尔，用来判断入参是否等于1</h3><h3 id="控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用"><a href="#控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用" class="headerlink" title="控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用"></a>控制器导入扩展方法所在的类的命名空间，限制扩展方法的使用</h3><pre><code class="csharp">public static class StringExtension
+                  <h2 id="Remark特性的应用场景"><a href="#Remark特性的应用场景" class="headerlink" title="Remark特性的应用场景"></a>Remark特性的应用场景</h2><a id="more"></a>
+<h3 id="场景一：用户状态的枚举值，定义的是英文的字段，需要输出中文含义。枚举定义如下："><a href="#场景一：用户状态的枚举值，定义的是英文的字段，需要输出中文含义。枚举定义如下：" class="headerlink" title="场景一：用户状态的枚举值，定义的是英文的字段，需要输出中文含义。枚举定义如下："></a>场景一：用户状态的枚举值，定义的是英文的字段，需要输出中文含义。枚举定义如下：</h3><pre><code class="csharp">public enum UserState
 {
     /// &lt;summary&gt;
-    /// Remark：判断输入的是不是1
+    /// 正常
     /// &lt;/summary&gt;
-    /// &lt;param name=&quot;input&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static bool IsOne(this int input)
+    Normal = 0,
+
+    /// &lt;summary&gt;
+    /// 冻结
+    /// &lt;/summary&gt;
+    Frozen = 1,
+
+    /// &lt;summary&gt;
+    /// 删除
+    /// &lt;/summary&gt;
+    Deleted = 2
+}
+</code></pre>
+<h3 id="普通做法：根据枚举值进行判断，然后输出中文含义："><a href="#普通做法：根据枚举值进行判断，然后输出中文含义：" class="headerlink" title="普通做法：根据枚举值进行判断，然后输出中文含义："></a>普通做法：根据枚举值进行判断，然后输出中文含义：</h3><pre><code class="csharp">UserState userState = UserState.Normal;
+switch (userState)
+{
+    case UserState.Deleted:
+    Console.WriteLine(&quot;删除&quot;);
+    break;
+
+    case UserState.Normal:
+    Console.WriteLine(&quot;正常&quot;);
+    break;
+
+    case UserState.Frozen:
+    Console.WriteLine(&quot;冻结&quot;);
+    break;
+}
+</code></pre>
+<h3 id="这种写法违反开闭原则，不利于以后的扩展，下面使用特性实现"><a href="#这种写法违反开闭原则，不利于以后的扩展，下面使用特性实现" class="headerlink" title="这种写法违反开闭原则，不利于以后的扩展，下面使用特性实现"></a>这种写法违反开闭原则，不利于以后的扩展，下面使用特性实现</h3><h3 id="先定义Remark特性："><a href="#先定义Remark特性：" class="headerlink" title="先定义Remark特性："></a>先定义Remark特性：</h3><pre><code class="csharp">/// &lt;summary&gt;
+/// Remark特性
+/// &lt;/summary&gt;
+public class RemarkAttribute : Attribute
+{
+    private string _Remark;
+
+    /// &lt;summary&gt;
+    /// 有参构造函数
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;remark&quot;&gt;&lt;/param&gt;
+    public RemarkAttribute(string remark)
     {
-        if (input == 1)
-        {
-            return true;
-        }
-        return false;
+        _Remark = remark;
+    }
+
+    /// &lt;summary&gt;
+    /// 获取Remark
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public string GetRemark()
+    {
+        return _Remark;
     }
 }
 </code></pre>
-<h3 id="接口调用方法，传参为1，返回true"><a href="#接口调用方法，传参为1，返回true" class="headerlink" title="接口调用方法，传参为1，返回true"></a>接口调用方法，传参为1，返回true</h3><a href="code.png" data-fancybox="images" data-caption="调用接口"><img src="code.png"></a>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。"><a href="#扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。" class="headerlink" title="- 扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。"></a>- 扩展方法必须定义在静态类中，扩展方法本身也是静态方法，扩展方法也可以重载。</h3><h3 id="如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。"><a href="#如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。" class="headerlink" title="- 如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。"></a>- 如果扩展方法和对应的类位于不同的命名空间，使用时应引入扩展方法所在静态类的命名空间。</h3><h3 id="当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）"><a href="#当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）" class="headerlink" title="- 当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）"></a>- 当类本身的方法与扩展方法重名时，类本身的方法被优先调用。（建议通过命名空间的方式来限制扩展方法的使用）</h3><h3 id="扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。"><a href="#扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。" class="headerlink" title="- 扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。"></a>- 扩展方法不要过多使用。尤其是系统定义的类，不要随意增加扩展方法。</h3>
+<h3 id="UserState枚举修改如下："><a href="#UserState枚举修改如下：" class="headerlink" title="UserState枚举修改如下："></a>UserState枚举修改如下：</h3><pre><code class="csharp">public enum UserState
+{
+    /// &lt;summary&gt;
+    /// 正常
+    /// &lt;/summary&gt;
+    [Remark(&quot;正常&quot;)]
+    Normal = 0,
+
+    /// &lt;summary&gt;
+    /// 冻结
+    /// &lt;/summary&gt;
+    [Remark(&quot;冻结&quot;)]
+    Frozen = 1,
+
+    /// &lt;summary&gt;
+    /// 删除
+    /// &lt;/summary&gt;
+    [Remark(&quot;删除&quot;)]
+    Deleted = 2
+}
+</code></pre>
+<h3 id="写一个扩展方法，对Enum类型进行扩展："><a href="#写一个扩展方法，对Enum类型进行扩展：" class="headerlink" title="写一个扩展方法，对Enum类型进行扩展："></a>写一个扩展方法，对Enum类型进行扩展：</h3><pre><code class="csharp">public static class RemarkExtension
+{
+    /// &lt;summary&gt;
+    /// Enum的扩展方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;value&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static string GetRemark(this Enum value)
+    {
+        //获取类型
+        Type type = value.GetType();
+
+        //获取字段
+        FieldInfo fieId = type.GetField(value.ToString());
+
+        //判断字段上面是否定义了ReamrkAttribute特性
+        if (fieId.IsDefined(typeof(RemarkAttribute)))
+        {
+            //创建实例
+            RemarkAttribute attribute = (RemarkAttribute)fieId.GetCustomAttribute(typeof(RemarkAttribute));
+
+            return attribute.GetRemark();
+        }
+        else
+        {
+            return value.ToString();
+        }
+    }
+}
+</code></pre>
+<h3 id="最后Main-方法里面调用"><a href="#最后Main-方法里面调用" class="headerlink" title="最后Main()方法里面调用"></a>最后Main()方法里面调用</h3><pre><code class="csharp">static void Main(string[] args)
+{
+    UserState userState = UserState.Normal;
+    Console.WriteLine(userState.GetRemark());
+    Console.ReadKey();
+}
+</code></pre>
+<h3 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h3><a href="Normal.png" data-fancybox="images" data-caption="输出结果"><img src="Normal.png"></a>
                 </div>
                 <!-- 赞赏 -->
                 <div class="single-reward">
@@ -459,17 +559,17 @@
               
                 <div class="post-nepre half previous">
                   
-                        <a href="/DotNET/CSharp_Interview_ques_1/" rel="prev">
+                        <a href="/DotNET/DotNETCore_WebAPI_EFCore_MySQL/" rel="prev">
                           <div class="background">
-                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/9.jpg"
+                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/15.jpg"
                               style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/9.jpg">
+                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/15.jpg">
                           </div>
                           <span class="label">
                             Previous Post</span>
                           <div class="info">
                             <h3>
-                              C#常见算法题
+                              .NET Core WebAPI使用EFCore连接MySQL
                             </h3>
                             <hr>
                           </div>
@@ -480,18 +580,18 @@
                         
                           <div class="post-nepre half next">
                             
-                                  <a href="/Other/YouSay/" rel="next">
+                                  <a href="/DotNET/CSharp_Interview_ques_2/" rel="next">
                                     <div class="background">
                                       <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
-                                        data-src="https://cdn.lovetianci.cn/themes/images/background/2.jpg"
+                                        data-src="https://cdn.lovetianci.cn/themes/images/background/10.jpg"
                                         style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/2.jpg">
+                                        onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/10.jpg">
                                     </div>
                                     <span class="label">
                                       Next Post</span>
                                     <div class="info">
                                       <h3>
-                                        诗词欣赏
+                                        C#理论面试题
                                       </h3>
                                       <hr>
                                     </div>

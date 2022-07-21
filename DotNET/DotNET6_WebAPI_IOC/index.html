@@ -24,7 +24,7 @@
 <meta property="og:description" content="接口和实现自动注入到IOC容器">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/17.jpg">
-<meta property="og:updated_time" content="2022-07-20T14:16:38.988Z">
+<meta property="og:updated_time" content="2022-07-21T14:29:47.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DotNET6 自动注入到IOC容器">
 <meta name="twitter:description" content="接口和实现自动注入到IOC容器">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:785
+          本章字数:779
             <span class="bull">
               ·</span>
-            总字数:16.6k
+            总字数:16.5k
               <!-- <span>
           
         </span> -->
@@ -533,12 +533,15 @@ public static class AutoDI
     /// &lt;param name=&quot;services&quot;&gt;&lt;/param&gt;
     public static IServiceCollection AddDataService(this IServiceCollection services)
     {
-        #region 依赖注入
         var singletonType = typeof(ISingleton); // 单例
         var transientType = typeof(ITransient); // 瞬时
         var scopedType = typeof(IScoped); // 作用域
         // 获取实现了三个生命周期接口的程序集
-        var allTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a =&gt; a.GetTypes().Where(t =&gt; t.GetInterfaces().Contains(transientType) || t.GetInterfaces().Contains(singletonType)|| t.GetInterfaces().Contains(scopedType)));
+        var allTypes = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(a =&gt; a.GetTypes().Where(t =&gt; 
+            t.GetInterfaces().Contains(transientType) || 
+            t.GetInterfaces().Contains(singletonType)|| 
+            t.GetInterfaces().Contains(scopedType)));
         // class的程序集
         var implementTypes = allTypes.Where(x =&gt; x.IsClass).ToArray();
         // 接口的程序集
@@ -586,7 +589,6 @@ public static class AutoDI
                 }
             }
         }
-        #endregion
         return services;
     }
 }
