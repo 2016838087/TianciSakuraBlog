@@ -24,7 +24,7 @@
 <meta property="og:description" content="阿里云CentOS安装GitLab">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/13.jpg">
-<meta property="og:updated_time" content="2022-07-28T15:48:52.097Z">
+<meta property="og:updated_time" content="2022-07-30T08:11:51.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux安装GitLab">
 <meta name="twitter:description" content="阿里云CentOS安装GitLab">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:230
+          本章字数:354
             <span class="bull">
               ·</span>
-            总字数:16.9k
+            总字数:17.9k
               <!-- <span>
           
         </span> -->
@@ -400,8 +400,8 @@
             <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
             
                 <div class="entry-content">
-                  <a id="more"></a>
-<h3 id="首先准备一台Linux服务器，我这使用的是阿里云ECS的CentOS-7-8-64位（2核-vCPU-4-GiB）"><a href="#首先准备一台Linux服务器，我这使用的是阿里云ECS的CentOS-7-8-64位（2核-vCPU-4-GiB）" class="headerlink" title="首先准备一台Linux服务器，我这使用的是阿里云ECS的CentOS 7.8 64位（2核(vCPU) 4 GiB）"></a>首先准备一台Linux服务器，我这使用的是阿里云ECS的CentOS 7.8 64位（2核(vCPU) 4 GiB）</h3><h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><pre><code class="shell">sudo yum install -y curl policycoreutils-python openssh-server
+                  <h3 id="安装GitLab需要最少4G运行内存"><a href="#安装GitLab需要最少4G运行内存" class="headerlink" title="安装GitLab需要最少4G运行内存"></a>安装GitLab需要最少4G运行内存</h3><a id="more"></a>
+<h3 id="准备一台Linux服务器，我这使用的是阿里云ECS的CentOS-7-8-64位（2核-vCPU-4-GiB）"><a href="#准备一台Linux服务器，我这使用的是阿里云ECS的CentOS-7-8-64位（2核-vCPU-4-GiB）" class="headerlink" title="准备一台Linux服务器，我这使用的是阿里云ECS的CentOS 7.8 64位（2核(vCPU) 4 GiB）"></a>准备一台Linux服务器，我这使用的是阿里云ECS的CentOS 7.8 64位（2核(vCPU) 4 GiB）</h3><h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><pre><code class="shell">sudo yum install -y curl policycoreutils-python openssh-server
 </code></pre>
 <a href="安装依赖包.jpg" data-fancybox="images" data-caption="安装依赖包"><img src="安装依赖包.jpg"></a>
 <h3 id="执行以下命令，使用官方脚本添加Yum源"><a href="#执行以下命令，使用官方脚本添加Yum源" class="headerlink" title="执行以下命令，使用官方脚本添加Yum源"></a>执行以下命令，使用官方脚本添加Yum源</h3><pre><code class="shell">curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | bash
@@ -413,16 +413,25 @@
 <h3 id="初始化GitLab配置"><a href="#初始化GitLab配置" class="headerlink" title="初始化GitLab配置"></a>初始化GitLab配置</h3><pre><code class="shell">gitlab-ctl reconfigure
 </code></pre>
 <a href="初始化配置.jpg" data-fancybox="images" data-caption="初始化配置"><img src="初始化配置.jpg"></a>
-<h3 id="找到GitLab文件夹下的gitlab-rb"><a href="#找到GitLab文件夹下的gitlab-rb" class="headerlink" title="找到GitLab文件夹下的gitlab.rb"></a>找到GitLab文件夹下的gitlab.rb</h3><pre><code class="shell">vi gitlab.rb
+<h3 id="找到GitLab文件夹下的gitlab-rb"><a href="#找到GitLab文件夹下的gitlab-rb" class="headerlink" title="找到GitLab文件夹下的gitlab.rb"></a>找到GitLab文件夹下的gitlab.rb</h3><pre><code class="shell">cd /etc/gitlab/
+vi gitlab.rb
 </code></pre>
 <a href="修改配置文件.jpg" data-fancybox="images" data-caption="修改配置文件"><img src="修改配置文件.jpg"></a>
-<h3 id="然后输入i进入insert模式，找到external-url将地址改为自己的服务器内网地址加端口号"><a href="#然后输入i进入insert模式，找到external-url将地址改为自己的服务器内网地址加端口号" class="headerlink" title="然后输入i进入insert模式，找到external_url将地址改为自己的服务器内网地址加端口号"></a>然后输入i进入insert模式，找到external_url将地址改为自己的服务器内网地址加端口号</h3><h3 id="再输入-wq-保存并退出"><a href="#再输入-wq-保存并退出" class="headerlink" title="再输入:wq!保存并退出"></a>再输入:wq!保存并退出</h3><h3 id="再初始化一次配置文件"><a href="#再初始化一次配置文件" class="headerlink" title="再初始化一次配置文件"></a>再初始化一次配置文件</h3><pre><code class="shell">gitlab-ctl reconfigure
+<h3 id="然后输入i进入insert模式，找到external-url将地址改为自己的服务器内网地址加端口号"><a href="#然后输入i进入insert模式，找到external-url将地址改为自己的服务器内网地址加端口号" class="headerlink" title="然后输入i进入insert模式，找到external_url将地址改为自己的服务器内网地址加端口号"></a>然后输入i进入insert模式，找到external_url将地址改为自己的服务器内网地址加端口号</h3><h3 id="按Esc退出insert模式再输入-wq-保存并退出"><a href="#按Esc退出insert模式再输入-wq-保存并退出" class="headerlink" title="按Esc退出insert模式再输入:wq!保存并退出"></a>按Esc退出insert模式再输入:wq!保存并退出</h3><h3 id="再初始化一次配置文件"><a href="#再初始化一次配置文件" class="headerlink" title="再初始化一次配置文件"></a>再初始化一次配置文件</h3><pre><code class="shell">gitlab-ctl reconfigure
 </code></pre>
 <h3 id="阿里云服务器需要配置安全组的规则来释放端口（这一步就跳过了）"><a href="#阿里云服务器需要配置安全组的规则来释放端口（这一步就跳过了）" class="headerlink" title="阿里云服务器需要配置安全组的规则来释放端口（这一步就跳过了）"></a>阿里云服务器需要配置安全组的规则来释放端口（这一步就跳过了）</h3><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><pre><code class="shell">gitlab-ctl start
 </code></pre>
+<h3 id="查看运行状态"><a href="#查看运行状态" class="headerlink" title="查看运行状态"></a>查看运行状态</h3><pre><code class="shell">gitlab-ctl status
+</code></pre>
 <a href="运行GitLab.jpg" data-fancybox="images" data-caption="运行GitLab"><img src="运行GitLab.jpg"></a>
 <h3 id="打开对应IP地址即可查看"><a href="#打开对应IP地址即可查看" class="headerlink" title="打开对应IP地址即可查看"></a>打开对应IP地址即可查看</h3><a href="运行成功.jpg" data-fancybox="images" data-caption="运行成功"><img src="运行成功.jpg"></a>
-<h3 id="管理员账号默认root密码在initial-root-password文件中"><a href="#管理员账号默认root密码在initial-root-password文件中" class="headerlink" title="管理员账号默认root密码在initial_root_password文件中"></a>管理员账号默认root密码在initial_root_password文件中</h3>
+<h3 id="管理员账号默认root密码在initial-root-password文件中"><a href="#管理员账号默认root密码在initial-root-password文件中" class="headerlink" title="管理员账号默认root密码在initial_root_password文件中"></a>管理员账号默认root密码在initial_root_password文件中</h3><h3 id="输入命令查看密码"><a href="#输入命令查看密码" class="headerlink" title="输入命令查看密码"></a>输入命令查看密码</h3><pre><code class="shell">sudo cat /etc/gitlab/initial_root_password
+</code></pre>
+<h3 id="需要注意的是Git仓库的链接默认是私网IP，踩坑了一直拉取失败也没注意到这个问题"><a href="#需要注意的是Git仓库的链接默认是私网IP，踩坑了一直拉取失败也没注意到这个问题" class="headerlink" title="需要注意的是Git仓库的链接默认是私网IP，踩坑了一直拉取失败也没注意到这个问题"></a>需要注意的是Git仓库的链接默认是私网IP，踩坑了一直拉取失败也没注意到这个问题</h3><h3 id="输入以下命令进入文件夹查看文件"><a href="#输入以下命令进入文件夹查看文件" class="headerlink" title="输入以下命令进入文件夹查看文件"></a>输入以下命令进入文件夹查看文件</h3><pre><code class="shell">cd /opt/gitlab/embedded/service/gitlab-rails/config
+</code></pre>
+<a href="修改私网配置.jpg" data-fancybox="images" data-caption="修改私网配置"><img src="修改私网配置.jpg"></a>
+<h3 id="修改gitlab-yml文件，将host改为外网IP"><a href="#修改gitlab-yml文件，将host改为外网IP" class="headerlink" title="修改gitlab.yml文件，将host改为外网IP"></a>修改gitlab.yml文件，将host改为外网IP</h3><a href="修改Host.jpg" data-fancybox="images" data-caption="修改Host"><img src="修改Host.jpg"></a>
+<h3 id="即可查看到Git仓库的Clone链接变成了外网IP"><a href="#即可查看到Git仓库的Clone链接变成了外网IP" class="headerlink" title="即可查看到Git仓库的Clone链接变成了外网IP"></a>即可查看到Git仓库的Clone链接变成了外网IP</h3>
                 </div>
                 <!-- 赞赏 -->
                 <div class="single-reward">
@@ -459,10 +468,30 @@
           <div class="toc" style="background: none;"></div>
           <section class="post-squares nextprev">
             
+              
+                <div class="post-nepre half previous">
+                  
+                        <a href="/Other/DotNET6_Linux_Jenkins_Docker/" rel="prev">
+                          <div class="background">
+                            <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.lovetianci.cn/themes/images/background/14.jpg"
+                              style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                              onerror="imgError(this,3)" src="https://cdn.lovetianci.cn/themes/images/background/14.jpg">
+                          </div>
+                          <span class="label">
+                            Previous Post</span>
+                          <div class="info">
+                            <h3>
+                              Linux使用Jenkins+Docker自动化部署DotNET6
+                            </h3>
+                            <hr>
+                          </div>
+                        </a>
+                    </div>
+                    
                       
                         
-                              <div class="post-nepre full next">
-                                
+                          <div class="post-nepre half next">
+                            
                                   <a href="/DotNET/DotNET6_Publish_Error/" rel="next">
                                     <div class="background">
                                       <img class="lazyload" src="https://cdn.lovetianci.cn/themes/cdn/svg/orange.progress-bar-stripe-loader.svg"
