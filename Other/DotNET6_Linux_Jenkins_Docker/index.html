@@ -24,7 +24,7 @@
 <meta property="og:description" content="阿里云CentOS持续集成部署DotNET6">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/14.jpg">
-<meta property="og:updated_time" content="2022-07-30T08:57:39.628Z">
+<meta property="og:updated_time" content="2022-07-30T14:51:51.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux使用Jenkins+Docker自动化部署DotNET6">
 <meta name="twitter:description" content="阿里云CentOS持续集成部署DotNET6">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:910
+          本章字数:1k
             <span class="bull">
               ·</span>
-            总字数:17.9k
+            总字数:18k
               <!-- <span>
           
         </span> -->
@@ -461,7 +461,7 @@ docker rmi -f $(docker images -aq)
 #构建镜像命令
 docker build -t dotnet6api .
 #运行镜像
-#--naem dotnet6api是容器名称
+#--name dotnet6api是容器名称
 #dotnet6api是绑定的镜像名称
 #5000是对外暴露的端口
 #80是docker内部绑定的端口
@@ -496,7 +496,19 @@ sudo chmod 666 /var/run/docker.sock
 <h3 id="停止Docker服务并查看运行状态"><a href="#停止Docker服务并查看运行状态" class="headerlink" title="停止Docker服务并查看运行状态"></a>停止Docker服务并查看运行状态</h3><pre><code class="shell">service docker stop
 service docker status
 </code></pre>
-
+<h3 id="扩展知识，发布项目想查看日志怎么办"><a href="#扩展知识，发布项目想查看日志怎么办" class="headerlink" title="扩展知识，发布项目想查看日志怎么办"></a>扩展知识，发布项目想查看日志怎么办</h3><h3 id="进入容器dotnet6api"><a href="#进入容器dotnet6api" class="headerlink" title="进入容器dotnet6api"></a>进入容器dotnet6api</h3><pre><code class="shell">docker exec -it dotnet6api /bin/bash
+</code></pre>
+<h3 id="容器里面相当于一个系统所以无法使用vim等操作"><a href="#容器里面相当于一个系统所以无法使用vim等操作" class="headerlink" title="容器里面相当于一个系统所以无法使用vim等操作"></a>容器里面相当于一个系统所以无法使用vim等操作</h3><h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><pre><code class="shell">apt-get install vim
+</code></pre>
+<h3 id="出现错误"><a href="#出现错误" class="headerlink" title="出现错误"></a>出现错误</h3><pre><code class="shell">Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package vim
+</code></pre>
+<h3 id="以下命令貌似会把本地的源同步到docker容器中再安装就可以了"><a href="#以下命令貌似会把本地的源同步到docker容器中再安装就可以了" class="headerlink" title="以下命令貌似会把本地的源同步到docker容器中再安装就可以了"></a>以下命令貌似会把本地的源同步到docker容器中再安装就可以了</h3><pre><code class="shell">apt-get update
+apt-get install vim
+</code></pre>
+<h3 id="退出容器快捷键CTRL-P-然后-CTRL-Q"><a href="#退出容器快捷键CTRL-P-然后-CTRL-Q" class="headerlink" title="退出容器快捷键CTRL + P 然后 CTRL + Q"></a>退出容器快捷键CTRL + P 然后 CTRL + Q</h3>
                 </div>
                 <!-- 赞赏 -->
                 <div class="single-reward">
