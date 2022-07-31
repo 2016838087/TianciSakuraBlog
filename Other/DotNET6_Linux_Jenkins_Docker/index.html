@@ -24,7 +24,7 @@
 <meta property="og:description" content="阿里云CentOS持续集成部署DotNET6">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/14.jpg">
-<meta property="og:updated_time" content="2022-07-30T14:51:51.564Z">
+<meta property="og:updated_time" content="2022-07-31T08:15:33.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux使用Jenkins+Docker自动化部署DotNET6">
 <meta name="twitter:description" content="阿里云CentOS持续集成部署DotNET6">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:1k
+          本章字数:1.1k
             <span class="bull">
               ·</span>
-            总字数:18k
+            总字数:18.1k
               <!-- <span>
           
         </span> -->
@@ -465,7 +465,8 @@ docker build -t dotnet6api .
 #dotnet6api是绑定的镜像名称
 #5000是对外暴露的端口
 #80是docker内部绑定的端口
-docker run -d -p 5000:80 --restart=always --name dotnet6api dotnet6api
+# -e TZ=Asia/Shanghai是将容器内部时间设置为上海时间
+docker run -e TZ=Asia/Shanghai -d -p 5000:80 --restart=always --name dotnet6api dotnet6api
 </code></pre>
 <h3 id="首次Jenkins构建会报错，报错信息dial-unix-var-run-docker-sock-connect-permission-denied"><a href="#首次Jenkins构建会报错，报错信息dial-unix-var-run-docker-sock-connect-permission-denied" class="headerlink" title="首次Jenkins构建会报错，报错信息dial unix /var/run/docker.sock: connect: permission denied"></a>首次Jenkins构建会报错，报错信息dial unix /var/run/docker.sock: connect: permission denied</h3><pre><code class="shell"># 添加当前用户到docker用户组  ${USER}指用户名
 sudo gpasswd -a ${USER} docker
