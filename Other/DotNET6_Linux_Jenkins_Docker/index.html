@@ -24,7 +24,7 @@
 <meta property="og:description" content="阿里云CentOS持续集成部署DotNET6">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cdn.lovetianci.cn/themes/images/background/14.jpg">
-<meta property="og:updated_time" content="2022-07-31T08:15:33.924Z">
+<meta property="og:updated_time" content="2022-07-31T08:55:06.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux使用Jenkins+Docker自动化部署DotNET6">
 <meta name="twitter:description" content="阿里云CentOS持续集成部署DotNET6">
@@ -380,10 +380,10 @@
           <span id="busuanzi_value_page_pv"></span>次阅读
           <span class="bull">
             ·</span>
-          本章字数:1.1k
+          本章字数:1.2k
             <span class="bull">
               ·</span>
-            总字数:18.1k
+            总字数:18.2k
               <!-- <span>
           
         </span> -->
@@ -445,28 +445,45 @@ sudo systemctl status docker
 <h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><pre><code class="shell">yum install -y git
 </code></pre>
 <a href="Git_Install.png" data-fancybox="images" data-caption="安装Git"><img src="Git_Install.png"></a>
-<h3 id="Jenkins配置shell自动化部署"><a href="#Jenkins配置shell自动化部署" class="headerlink" title="Jenkins配置shell自动化部署"></a>Jenkins配置shell自动化部署</h3><h3 id="创建Jobs配置Git选择构建中的执行Shell"><a href="#创建Jobs配置Git选择构建中的执行Shell" class="headerlink" title="创建Jobs配置Git选择构建中的执行Shell"></a>创建Jobs配置Git选择构建中的执行Shell</h3><h3 id="Jenkins下的项目目录-var-lib-jenkins-jobs"><a href="#Jenkins下的项目目录-var-lib-jenkins-jobs" class="headerlink" title="Jenkins下的项目目录/var/lib/jenkins/jobs"></a>Jenkins下的项目目录/var/lib/jenkins/jobs</h3><h3 id="可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了"><a href="#可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了" class="headerlink" title="可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了"></a>可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了</h3><h3 id="Jenkins中运行的shell命令"><a href="#Jenkins中运行的shell命令" class="headerlink" title="Jenkins中运行的shell命令"></a>Jenkins中运行的shell命令</h3><pre><code class="shell">#!/bin/bash
-pwd
-dotnet restore
-dotnet build
-dotnet publish
-#输出一提示的话
+<h3 id="Jenkins配置shell自动化部署"><a href="#Jenkins配置shell自动化部署" class="headerlink" title="Jenkins配置shell自动化部署"></a>Jenkins配置shell自动化部署</h3><h3 id="创建Jobs配置Git选择构建中的执行Shell"><a href="#创建Jobs配置Git选择构建中的执行Shell" class="headerlink" title="创建Jobs配置Git选择构建中的执行Shell"></a>创建Jobs配置Git选择构建中的执行Shell</h3><h3 id="Jenkins下的项目目录-var-lib-jenkins-jobs"><a href="#Jenkins下的项目目录-var-lib-jenkins-jobs" class="headerlink" title="Jenkins下的项目目录/var/lib/jenkins/jobs"></a>Jenkins下的项目目录/var/lib/jenkins/jobs</h3><h3 id="可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了"><a href="#可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了" class="headerlink" title="可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了"></a>可以进入对应项目中的workspace进行编译，编译通过基本就没啥问题了</h3><h3 id="如果docker中就一个镜像可以这样写Jenkins中运行的shell命令"><a href="#如果docker中就一个镜像可以这样写Jenkins中运行的shell命令" class="headerlink" title="如果docker中就一个镜像可以这样写Jenkins中运行的shell命令"></a>如果docker中就一个镜像可以这样写Jenkins中运行的shell命令</h3><pre><code class="shell">#!/bin/bash
+# 输出一提示的话
 echo &quot;Successfully^_^ ......................................................................................&quot;
-#输出当前地址，可以在日志中看到当前路径，检查一些路径问题
+# 输出当前地址，可以在日志中看到当前路径，检查一些路径问题
 pwd
 # 删除所有容器
 docker rm -vf $(docker ps -aq)
 # 删除所有镜像
 docker rmi -f $(docker images -aq)
-#构建镜像命令
+# 构建镜像命令
 docker build -t dotnet6api .
-#运行镜像
-#--name dotnet6api是容器名称
-#dotnet6api是绑定的镜像名称
-#5000是对外暴露的端口
-#80是docker内部绑定的端口
+# 从镜像运行容器
+# --name dotnet6apiweb是容器名称
+# dotnet6api是绑定的镜像名称
+# 5000是对外暴露的端口
+# 80是docker内部绑定的端口
 # -e TZ=Asia/Shanghai是将容器内部时间设置为上海时间
-docker run -e TZ=Asia/Shanghai -d -p 5000:80 --restart=always --name dotnet6api dotnet6api
+docker run -e TZ=Asia/Shanghai -d -p 5000:80 --restart=always --name dotnet6apiweb dotnet6api
+</code></pre>
+<h3 id="如果有很多镜像和容器只需要更新当前镜像和容器"><a href="#如果有很多镜像和容器只需要更新当前镜像和容器" class="headerlink" title="如果有很多镜像和容器只需要更新当前镜像和容器"></a>如果有很多镜像和容器只需要更新当前镜像和容器</h3><pre><code class="shell">#!/bin/bash
+# 输出一提示的话
+echo &quot;Successfully^_^ ......................................................................................&quot;
+# 输出当前地址，可以在日志中看到当前路径，检查一些路径问题
+pwd
+# 构建镜像命令
+docker build -t dotnet6api .
+# 更新镜像
+docker push dotnet6api
+# 停止容器
+docker stop dotnet6apiweb
+# 删除容器
+docker rm dotnet6apiweb
+# 从镜像运行容器
+# --name dotnet6apiweb是容器名称
+# dotnet6api是绑定的镜像名称
+# 5000是对外暴露的端口
+# 80是docker内部绑定的端口
+# -e TZ=Asia/Shanghai是将容器内部时间设置为上海时间
+docker run -e TZ=Asia/Shanghai -d -p 5000:80 --restart=always --name dotnet6apiweb dotnet6api
 </code></pre>
 <h3 id="首次Jenkins构建会报错，报错信息dial-unix-var-run-docker-sock-connect-permission-denied"><a href="#首次Jenkins构建会报错，报错信息dial-unix-var-run-docker-sock-connect-permission-denied" class="headerlink" title="首次Jenkins构建会报错，报错信息dial unix /var/run/docker.sock: connect: permission denied"></a>首次Jenkins构建会报错，报错信息dial unix /var/run/docker.sock: connect: permission denied</h3><pre><code class="shell"># 添加当前用户到docker用户组  ${USER}指用户名
 sudo gpasswd -a ${USER} docker
